@@ -12,7 +12,7 @@ const SITE_URL = "https://signaturevan.fr";
 
 export const Seo = ({ title, description, path, image, jsonLd }: SeoProps) => {
   const url = `${SITE_URL}${path}`;
-  const ogImage = image ?? `${SITE_URL}/og-image.jpg`;
+  const ogImage = image ?? `${SITE_URL}/og-image.png`;
 
   return (
     <Helmet>
@@ -33,7 +33,7 @@ export const Seo = ({ title, description, path, image, jsonLd }: SeoProps) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-
+    
       {jsonLd && (
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
@@ -52,6 +52,7 @@ export const localBusinessJsonLd = {
   url: SITE_URL,
   telephone: "+33 6 00 00 00 00",
   email: "contact@signaturevan.fr",
+  logo: `${SITE_URL}/og-image.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Atelier Signature Van",
@@ -62,5 +63,5 @@ export const localBusinessJsonLd = {
   },
   areaServed: ["Annecy", "Haute-Savoie", "Savoie", "Auvergne-Rhône-Alpes"],
   priceRange: "€€€",
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/og-image.png`,
 };

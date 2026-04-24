@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logoDark from "@/assets/logo-dark.png";
+import logoLight from "@/assets/logo-light.png";
 
 const links = [
   { to: "/services", label: "Services" },
@@ -29,6 +31,7 @@ export const Navbar = () => {
 
   const isHome = location.pathname === "/";
   const transparent = isHome && !scrolled && !open;
+  const logoSrc = transparent ? logoLight : logoDark;
 
   return (
     <header
@@ -39,21 +42,13 @@ export const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-5">
-        <Link to="/" className="flex items-baseline gap-2 group">
-          <span
-            className={`font-serif text-2xl tracking-tight ${
-              transparent ? "text-cream" : "text-foreground"
-            }`}
-          >
-            Signature
-          </span>
-          <span
-            className={`font-sans text-xs uppercase tracking-[0.3em] transition-colors ${
-              transparent ? "text-cream/70" : "text-muted-foreground"
-            }`}
-          >
-            Van
-          </span>
+        <Link to="/" className="flex items-center" aria-label="Retour à l'accueil Signature Van">
+          <img
+            src={logoSrc}
+            alt="Signature Van"
+            className="h-9 md:h-10 w-auto object-contain"
+            loading="eager"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
