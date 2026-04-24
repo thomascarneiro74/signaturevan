@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import { Seo } from "@/components/Seo";
 import { PageHeader } from "@/components/PageHeader";
-import craftImage from "@/assets/craft-detail.jpg";
+import craftImage from "@/assets/copeaux-rabot.jpg";
 import traficSalon from "@/assets/realisations/trafic-confort/trafic-confort-salon-velours-vert.jpg";
 import vanAnnecy from "@/assets/van-annecy.jpg";
 
@@ -84,7 +84,7 @@ const Services = () => {
             <div className="aspect-[4/5] overflow-hidden sticky top-28">
               <img
                 src={craftImage}
-                alt="Aménagement complet de van en bois sur mesure à Annecy"
+                alt="Détail d'un rabot et copeaux de bois — savoir-faire d'ébéniste"
                 loading="lazy"
                 width={1080}
                 height={1350}

@@ -1,4 +1,4 @@
-import craftImage from "@/assets/craft-detail.jpg";
+import craftImage from "@/assets/thomas-atelier.jpg";
 
 export const SavoirFaire = () => {
   return (
@@ -8,7 +8,7 @@ export const SavoirFaire = () => {
           <div className="aspect-[4/5] overflow-hidden">
             <img
               src={craftImage}
-              alt="Détail de menuiserie en chêne dans un van"
+              alt="Thomas au rabot dans son atelier d'aménagement de vans"
               loading="lazy"
               width={1080}
               height={1350}
