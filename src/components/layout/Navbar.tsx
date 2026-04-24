@@ -41,7 +41,7 @@ export const Navbar = () => {
           : "bg-background/90 backdrop-blur-md border-b border-border/60"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-5">
+      <div className="container mx-auto flex items-center justify-between py-1">
         <Link to="/" className="flex items-center" aria-label="Retour à l'accueil Signature Van">
           <img
             src={logoSrc}
