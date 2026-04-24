@@ -2,95 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   SIGNATURE VAN — Design System
+   Palette : blanc cassé, beige sable, verts forêt
+   ============================================ */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces — blanc cassé chaud */
+    --background: 40 30% 97%;
+    --foreground: 145 20% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 40 25% 95%;
+    --card-foreground: 145 20% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 30% 97%;
+    --popover-foreground: 145 20% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Vert forêt profond — couleur signature */
+    --primary: 145 30% 18%;
+    --primary-foreground: 40 30% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Vert sauge — accent doux */
+    --secondary: 110 18% 55%;
+    --secondary-foreground: 145 30% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Beige sable */
+    --muted: 38 25% 88%;
+    --muted-foreground: 145 12% 35%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 110 22% 70%;
+    --accent-foreground: 145 30% 18%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 8 60% 45%;
+    --destructive-foreground: 40 30% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 38 20% 82%;
+    --input: 38 20% 82%;
+    --ring: 145 30% 18%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Tokens additionnels */
+    --sand: 38 30% 85%;
+    --sand-deep: 36 22% 70%;
+    --forest: 145 30% 18%;
+    --forest-deep: 150 35% 10%;
+    --sage: 110 18% 55%;
+    --sage-light: 110 22% 78%;
+    --cream: 40 30% 97%;
+    --ink: 145 30% 12%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients & ombres */
+    --gradient-hero: linear-gradient(180deg, hsl(145 30% 12% / 0.15) 0%, hsl(145 30% 12% / 0.65) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(40 30% 97%) 0%, hsl(38 25% 90%) 100%);
+    --shadow-soft: 0 1px 2px hsl(145 30% 12% / 0.04), 0 8px 30px -10px hsl(145 30% 12% / 0.12);
+    --shadow-card: 0 20px 60px -25px hsl(145 30% 12% / 0.25);
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Transitions */
+    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-base: 600ms var(--ease-out-soft);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar (defaults) */
+    --sidebar-background: 40 30% 97%;
+    --sidebar-foreground: 145 20% 12%;
+    --sidebar-primary: 145 30% 18%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 38 25% 88%;
+    --sidebar-accent-foreground: 145 30% 18%;
+    --sidebar-border: 38 20% 82%;
+    --sidebar-ring: 145 30% 18%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 150 25% 8%;
+    --foreground: 40 25% 92%;
+    --card: 150 22% 11%;
+    --card-foreground: 40 25% 92%;
+    --popover: 150 25% 8%;
+    --popover-foreground: 40 25% 92%;
+    --primary: 40 25% 92%;
+    --primary-foreground: 150 25% 8%;
+    --secondary: 110 15% 30%;
+    --secondary-foreground: 40 25% 92%;
+    --muted: 150 15% 18%;
+    --muted-foreground: 40 15% 70%;
+    --accent: 110 18% 35%;
+    --accent-foreground: 40 25% 92%;
+    --destructive: 8 50% 40%;
+    --destructive-foreground: 40 25% 92%;
+    --border: 150 15% 18%;
+    --input: 150 15% 18%;
+    --ring: 40 25% 92%;
+    --sidebar-background: 150 25% 8%;
+    --sidebar-foreground: 40 25% 92%;
+    --sidebar-primary: 40 25% 92%;
+    --sidebar-primary-foreground: 150 25% 8%;
+    --sidebar-accent: 150 15% 18%;
+    --sidebar-accent-foreground: 40 25% 92%;
+    --sidebar-border: 150 15% 18%;
+    --sidebar-ring: 40 25% 92%;
   }
 }
 
@@ -99,7 +110,62 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Instrument Serif', 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Instrument Serif', 'Times New Roman', serif;
+  }
+  .font-sans {
+    font-family: 'Work Sans', system-ui, sans-serif;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Reveal on scroll — initial state */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s var(--ease-out-soft), transform 1s var(--ease-out-soft);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Slow drift */
+  @keyframes drift-up {
+    0% { transform: translateY(8px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  .animate-drift-up {
+    animation: drift-up 1.2s var(--ease-out-soft) both;
+  }
+
+  @keyframes ken-burns {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.15); }
+  }
+  .animate-ken-burns {
+    animation: ken-burns 18s ease-in-out infinite alternate;
   }
 }
