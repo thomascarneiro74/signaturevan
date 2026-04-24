@@ -11,6 +11,8 @@ import Realisations from "./pages/Realisations";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { MentionsLegales, Confidentialite } from "./pages/Legal";
+import FormuleConfort from "./pages/FormuleConfort";
+import FormuleLiberte from "./pages/FormuleLiberte";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/formule-confort" element={<FormuleConfort />} />
+            <Route path="/formule-liberte" element={<FormuleLiberte />} />
             <Route path="/location-van-annecy" element={<Location />} />
             <Route path="/realisations" element={<Realisations />} />
             <Route path="/a-propos" element={<About />} />
