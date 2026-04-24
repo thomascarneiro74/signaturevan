@@ -26,7 +26,7 @@ import traficPortes from "@/assets/realisations/trafic-confort/trafic-confort-po
 const talento = {
   vehicle: "Fiat Talento L2H1 — 2019",
   category: "Aménagement sur mesure",
-  title: "Aménagement Fiat Talento sur mesure — famille de 3",
+  title: "Aménagement Fiat Talento sur mesure — couple + 1 enfant",
   tagline: "Compact, mais 3 vrais couchages.",
   highlights: [
     "3 couchages — 140×200 + 140×70 cabine",
@@ -34,7 +34,7 @@ const talento = {
     "Détail ébéniste : meuble d'entrée arrondi",
   ],
   story: [
-    "Une famille de 3 nous a confié son Fiat Talento avec une demande claire : partir en van sans renoncer au confort, dans un véhicule compact qui reste facile à conduire au quotidien.",
+    "Un couple avec un jeune enfant nous a confié son Fiat Talento avec une demande claire : partir en van sans renoncer au confort, dans un véhicule compact qui reste facile à conduire au quotidien.",
     "Le défi tenait dans peu de mètres carrés : faire dormir trois personnes confortablement, intégrer une vraie cuisine, et garder un esprit chaleureux. Nous avons pensé l'aménagement autour du couchage parental 140×200 à l'arrière, avec un lit enfant amovible 140×70 qui se cale entre les sièges avant de la cabine — une astuce d'ébéniste qui change tout.",
     "La cuisine, placée tout à l'arrière, s'utilise indifféremment portes fermées ou grand ouvertes face à la nature. Le plan de travail en frêne massif, le stratifié vert de gris des meubles, le velours côtelé blanc cassé des assises et le détail arrondi du meuble d'entrée donnent au van une signature visuelle douce, naturelle, faite pour durer.",
   ],
@@ -268,14 +268,14 @@ const Realisations = () => {
     <>
       <Seo
         title="Réalisations — Aménagements de vans à Annecy | Signature Van"
-        description="Découvrez nos aménagements de vans livrés depuis l'atelier de Chapeiry, près d'Annecy : Fiat Talento sur mesure pour famille et Renault Trafic Formule Confort."
+        description="Découvrez nos aménagements de vans livrés depuis l'atelier de Chapeiry, près d'Annecy : Fiat Talento sur mesure pour couple + enfant et Renault Trafic Formule Confort."
         path="/realisations"
         jsonLd={projectsJsonLd}
       />
       <PageHeader
         eyebrow="Réalisations"
         title={<>Nos aménagements de vans <em className="italic">livrés</em>.</>}
-        intro="Du sur-mesure pour une famille à notre Formule Confort prête à partir : chaque van raconte une manière de voyager. Découvrez nos projets sortis de l'atelier de Chapeiry."
+        intro="Du sur-mesure pour un couple avec enfant à notre Formule Confort prête à partir : chaque van raconte une manière de voyager. Découvrez nos projets sortis de l'atelier de Chapeiry."
       />
 
       <ProjectBlock
