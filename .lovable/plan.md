@@ -1,38 +1,29 @@
-## Modifications dans `src/pages/Location.tsx`
+## Agrandir le logo dans la Navbar
 
-### 1. PageHeader
-- Retirer `"depuis Chapeiry"` de l'intro
+### Fichier : `src/components/layout/Navbar.tsx`
 
-### 2. Le Cocon Nomade
-- **Tag** → `"Escapades en duo ou en famille"`
-- **Hauteur** → `2,06 m`
-- **Cuisine équipée** → ajout : `, réserve eau propre 54 L, ballon eau chaude, robinet douchette extensible, réchaud amovible double feux`
-- **Autonomie** → `"Recharge en roulant + panneau solaire · prises USB et 12V"`
-- **Photo** → remplacer par `cocon-nomade-interieur.jpg` (copie depuis `user-uploads://IMG_5844-2.JPG` vers `src/assets/`)
-  - Alt : `"Intérieur du van Cocon Nomade au coucher du soleil — coin repas et cuisine"`
+**Modification du `<img>` du logo (ligne 49)**
 
-### 3. L'Échappée Belle
-- **Tag** → vidé (suppression `"Petite famille outdoor"`)
-- **Lit cabine** → `60 × 140`
-- **Cuisine / eau** → `"Réserve d'eau par jerricans : 36 L eau propre + 12 L eaux usées · 1 feu gaz amovible · vaisselle complète"`
-- **Autonomie** → `"Batterie auxiliaire rechargée en roulant · prises USB et 12V"` (suppression panneau solaire)
-- **Photo** → remplacer par `echappee-belle-interieur.jpg` (copie depuis `user-uploads://IMG20260416085659.jpg` vers `src/assets/`)
-  - Alt : `"Intérieur de L'Échappée Belle — meuble cuisine et porte latérale ouverte sur prairie et montagnes"`
+Actuellement :
+```tsx
+className="h-9 md:h-10 w-auto object-contain"
+```
 
-### 4. Liste "Tout ce qu'il faut pour partir sans friction"
-- Ajout après `"Vaisselle, batterie de cuisine, cafetière et consommables de base"` :
-  → `"Couette et oreillers fournis pour chaque couchage"`
+Nouveau :
+```tsx
+className="h-14 md:h-16 w-auto object-contain"
+```
 
-### 5. Grille tarifaire
-- **Basse saison** : `period` → `"de novembre à mars"` · **badge en haut de carte** : `2 nuits min.`
-- **Moyenne saison** : `period` → `"avril, mai, juin, septembre, octobre"` · **badge** : `2 nuits min.`
-- **Haute saison** : `period` → `"juillet - août"` · **badge** : `5 nuits min.`
-- Remplacer `"par jour"` → `"par nuit"` dans les **3 cartes tarifs**
-- Section **Kilométrage** → reste inchangée (`/ jour`)
+**Détails techniques** :
+- Mobile : `h-9` (36px) → `h-14` (56px) — soit ~55% plus grand
+- Desktop : `h-10` (40px) → `h-16` (64px) — soit +60%
+- Le `py-5` du conteneur parent (`<div className="container mx-auto flex items-center justify-between py-5">`) reste suffisant pour absorber la hauteur supplémentaire sans casser l'alignement vertical avec les liens de navigation.
+- La nav reste centrée verticalement grâce à `items-center`.
 
-### 6. Imports
-- Mettre à jour les imports d'images en haut du fichier pour pointer vers les 2 nouveaux fichiers.
+### Pourquoi ces valeurs
+- `h-14`/`h-16` correspondent à un standard "logo bien lisible" sur la plupart des sites éditoriaux haut de gamme.
+- Si après application tu trouves que c'est encore trop petit ou trop grand, on pourra ajuster facilement (par ex. `h-12 md:h-14` pour plus modéré, ou `h-16 md:h-20` pour plus imposant).
 
 ---
 
-✅ Une seule passe d'édition couvrira l'ensemble.
+✅ Une seule ligne modifiée, aucun risque de régression sur le reste de la mise en page.
