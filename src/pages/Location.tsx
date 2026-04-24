@@ -1,228 +1,680 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ArrowRight,
+  CalendarDays,
+  Check,
+  Compass,
+  Fuel,
+  Mountain,
+  Shield,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { Seo } from "@/components/Seo";
 import { PageHeader } from "@/components/PageHeader";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
 import vanAnnecy from "@/assets/van-annecy.jpg";
-import vanInterior from "@/assets/hero-van.jpg";
+import vanExterior from "@/assets/van-exterior.jpg";
+import vanKitchen from "@/assets/van-kitchen.jpg";
+import vanBedroom from "@/assets/van-bedroom.jpg";
 
-const equipment = [
-  "2 places assises homologuées + 2 couchages",
-  "Coin cuisine équipé (réchaud 2 feux, évier, frigo 12V)",
-  "Lit fixe 140×200 avec rangements intégrés",
-  "Chauffage stationnaire diesel (toutes saisons)",
-  "Panneaux solaires + batterie auxiliaire",
-  "Réservoir eau propre 80L + douche extérieure",
-  "Auvent, table d'extérieur, vaisselle complète",
-  "Porte-vélos, barres de toit pour skis & paddle",
+const fleet = [
+  {
+    name: "Le Cocon Nomade",
+    vehicle: "Fiat Talento aménagé",
+    tag: "Escapades à deux",
+    image: vanKitchen,
+    alt: "Cuisine intérieure du van Le Cocon Nomade aménagé par Signature Van",
+    summary:
+      "Un van compact, chaleureux et facile à prendre en main pour les week-ends impro, les lacs alpins et les premières virées vanlife.",
+    specs: [
+      "2 adultes + 1 enfant max. 10 ans",
+      "Lit principal 140 × 200 + couchage cabine enfant",
+      "Cuisine équipée, glacière compression, vaisselle complète",
+      "Hauteur 1,96 m · permis B · dépassement 0,15 €/km",
+    ],
+    meta: [
+      { label: "Transmission", value: "Manuelle" },
+      { label: "Énergie", value: "Diesel" },
+      { label: "Autonomie", value: "Élec 12V + spots LED" },
+      { label: "Esprit", value: "Petit cocon prêt à partir" },
+    ],
+  },
+  {
+    name: "L'Échappée Belle",
+    vehicle: "Renault Trafic L2H1 — 2019",
+    tag: "Petite famille outdoor",
+    image: vanExterior,
+    alt: "Vue extérieure du van L'Échappée Belle au départ d'Annecy",
+    summary:
+      "Le van signature pour partir léger avec un vrai confort à bord : salon accueillant, lit principal généreux et couchage cabine enfant.",
+    specs: [
+      "3 places route · 2 adultes + 1 enfant",
+      "Lit arrière 140 × 200 + lit cabine 60/70 × 140",
+      "Réservoir eau, douchette, rangements et coin repas",
+      "Hauteur env. 2,10 m · caution 2 000 € · permis B",
+    ],
+    meta: [
+      { label: "Transmission", value: "Manuelle" },
+      { label: "Énergie", value: "Diesel" },
+      { label: "Autonomie", value: "Panneau solaire + batterie AGM" },
+      { label: "Usage", value: "Road trips Annecy & Alpes" },
+    ],
+  },
+] as const;
+
+const seasons = [
+  { name: "Basse saison", price: "55 €", period: "hors vacances et grands ponts" },
+  { name: "Moyenne saison", price: "72 €", period: "printemps, automne, ponts" },
+  { name: "Haute saison", price: "94 €", period: "été et périodes très demandées" },
+] as const;
+
+const included = [
+  "Assurance multirisques et assistance 24h/24",
+  "Vaisselle, batterie de cuisine, cafetière et consommables de base",
+  "Prise en main complète avant départ depuis Chapeiry / Annecy",
+  "Éclairage LED, prises USB, rangements et table de repas",
+  "Conseils d'itinéraires lacs, montagnes et spots nuit autour des Alpes",
+  "Support propriétaire réactif pendant le séjour",
 ];
 
-const cseAdvantages = [
+const advantages = [
   {
-    t: "Une remise dédiée CSE",
-    d: "Tarif préférentiel négocié pour les salariés de votre entreprise — sur tous les week-ends et semaines.",
+    title: "Réservation directe valorisée",
+    text: "Jusqu'à -15 % par rapport au tarif affiché sur Yescapa, avec un échange direct et des conseils sur mesure avant le départ.",
   },
   {
-    t: "Un avantage qui sort du lot",
-    d: "Plus original qu'une carte cadeau. Un week-end vanlife dans les Alpes : un cadeau dont on se souvient.",
+    title: "Avantage CE / CSE",
+    text: "Réduction dédiée pour les salariés via leur comité d'entreprise, sur demande. Cumulable uniquement avec la remise réservation directe.",
   },
   {
-    t: "100 % adapté au public outdoor",
-    d: "Idéal pour les entreprises ancrées en montagne — Salomon, Mavic, Rossignol, NTN-SNR, Téfal, hôpital d'Annecy…",
-  },
-  {
-    t: "Une mise en place simple",
-    d: "Code promo dédié, affiche / PDF de communication interne, processus de réservation clair pour vos salariés.",
+    title: "Vans pensés par l'artisan qui les loue",
+    text: "Vous partez dans des véhicules que l'on connaît dans le détail : aménagement, entretien, astuces d'usage, tout est maîtrisé.",
   },
 ];
+
+const personas = [
+  {
+    title: "Couples & amis",
+    text: "Un week-end au lac, une nuit en altitude, trois jours dans les Aravis : le bon format pour partir vite, sans logistique lourde.",
+    icon: Compass,
+  },
+  {
+    title: "Petites familles outdoor",
+    text: "Deux adultes et un enfant peuvent dormir confortablement, avec un couchage cabine pensé pour les jeunes aventuriers.",
+    icon: Users,
+  },
+  {
+    title: "Futurs vanlifers",
+    text: "Avant de lancer votre propre aménagement, testez un usage réel : circulation, couchage, cuisine, autonomie, météo.",
+    icon: Mountain,
+  },
+];
+
+const faq = [
+  {
+    q: "Quelle assurance est incluse ?",
+    a: "L'assurance multirisques Yescapa et l'assistance sont incluses. Le niveau de franchise dépend de la formule choisie au moment de la réservation.",
+  },
+  {
+    q: "Les animaux sont-ils acceptés ?",
+    a: "Non, les deux vans sont proposés sans animaux afin de préserver les textiles, les finitions et le confort des voyageurs suivants.",
+  },
+  {
+    q: "Comment se passent la prise en charge et la restitution ?",
+    a: "Le départ se fait autour d'Annecy / Chapeiry avec une vraie prise en main du van. Au retour, un état des lieux est réalisé ensemble et les frais de nettoyage sont offerts si le van est rendu propre.",
+  },
+  {
+    q: "Quelles sont les conditions d'annulation ?",
+    a: "Les conditions d'annulation suivent la politique de réservation appliquée par Yescapa ou le mode de réservation retenu. Elles sont rappelées au moment du devis.",
+  },
+  {
+    q: "Proposez-vous une remise CE / CSE ?",
+    a: "Oui, selon l'organisme. Cette remise est étudiée sur demande et n'est cumulable qu'avec l'offre de réservation directe à -15 %, jamais avec le dégressif longue durée ni l'early booking.",
+  },
+];
+
+const productJsonLd = fleet.map((van) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: `${van.name} — ${van.vehicle}`,
+  description: van.summary,
+  brand: { "@type": "Brand", name: "Signature Van" },
+  areaServed: "Annecy",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      priceCurrency: "EUR",
+      minPrice: 55,
+      maxPrice: 94,
+      unitText: "DAY",
+    },
+    priceValidUntil: "2026-12-31",
+  },
+}));
+
+const bookingSchema = z.object({
+  name: z.string().min(2, "Indiquez votre nom."),
+  email: z.string().email("Renseignez un email valide."),
+  phone: z.string().min(6, "Renseignez un téléphone valide."),
+  van: z.string().min(1, "Choisissez un van."),
+  startDate: z.string().min(1, "Choisissez une date de départ."),
+  endDate: z.string().min(1, "Choisissez une date de retour."),
+  travellers: z.string().min(1, "Indiquez le nombre de voyageurs."),
+  cse: z.boolean().default(false),
+  message: z.string().min(12, "Ajoutez quelques détails sur votre séjour."),
+});
+
+type BookingValues = z.infer<typeof bookingSchema>;
 
 const Location = () => {
+  const [sending, setSending] = useState(false);
+
+  const form = useForm<BookingValues>({
+    resolver: zodResolver(bookingSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      van: "",
+      startDate: "",
+      endDate: "",
+      travellers: "",
+      cse: false,
+      message: "",
+    },
+  });
+
+  const onSubmit = async (values: BookingValues) => {
+    setSending(true);
+
+    const subject = `Demande location van — ${values.van}`;
+    const body = [
+      `Nom : ${values.name}`,
+      `Email : ${values.email}`,
+      `Téléphone : ${values.phone}`,
+      `Van souhaité : ${values.van}`,
+      `Dates : du ${values.startDate} au ${values.endDate}`,
+      `Voyageurs : ${values.travellers}`,
+      `CE / CSE : ${values.cse ? "Oui" : "Non"}`,
+      "",
+      "Message :",
+      values.message,
+    ].join("\n");
+
+    window.location.href = `mailto:contact@signaturevan.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    toast.success("Votre demande est prête à être envoyée.");
+    form.reset();
+    setSending(false);
+  };
+
   return (
     <>
       <Seo
-        title="Location de van aménagé à Annecy (Haute-Savoie) | Signature Van"
-        description="Louez un van aménagé au départ d'Annecy. Idéal week-end dans les Alpes. Offre dédiée CSE et comités d'entreprise. Van prêt à partir, prise en main complète."
+        title="Location de van à Annecy — tarifs et flotte | Signature Van"
+        description="Découvrez nos vans aménagés au départ d'Annecy : flotte, tarifs, kilomètres inclus, avantage CE/CSE et demande de réservation directe."
         path="/location-van-annecy"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Location de van aménagé",
-          provider: { "@type": "LocalBusiness", name: "Signature Van" },
-          areaServed: "Annecy, Haute-Savoie",
-          description:
-            "Location de van aménagé à Annecy pour week-end et vacances, avec offre dédiée aux CSE.",
-        }}
-      />
-      <PageHeader
-        eyebrow="Location"
-        title={<>Location de van aménagé <em className="italic">à Annecy</em>.</>}
-        intro="Un van prêt à partir au départ d'Annecy / Chapeiry. Pour vivre la vanlife le temps d'un week-end, d'une semaine ou d'un grand voyage — et tester avant un projet d'aménagement."
+        jsonLd={productJsonLd}
       />
 
-      {/* Présentation du van */}
+      <PageHeader
+        eyebrow="Location"
+        title={<>Location de vans aménagés <em className="italic">à Annecy</em>.</>}
+        intro="Deux vans prêts à partir depuis Chapeiry, pensés pour les week-ends alpins, les micro-aventures et les premières escapades en petite famille."
+      />
+
       <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto grid md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-7">
-            <div className="aspect-[16/10] overflow-hidden">
+        <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-14 items-end">
+          <div className="md:col-span-7 overflow-hidden bg-muted">
+            <div className="aspect-[16/10]">
               <img
                 src={vanAnnecy}
-                alt="Location de van aménagé au départ d'Annecy avec vue sur les Alpes"
+                alt="Van aménagé Signature Van au départ d'Annecy face aux montagnes"
                 loading="lazy"
-                width={1600}
-                height={1000}
                 className="h-full w-full object-cover"
               />
             </div>
           </div>
           <div className="md:col-span-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Le van</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— En ce moment</p>
             <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Un van pensé pour <em className="italic">la montagne</em> et les week-ends outdoor.
+              Une flotte courte, claire, <em className="italic">facile à réserver</em>.
             </h2>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
-              Notre van de location a été aménagé dans notre atelier — bois massif, isolation liège,
-              équipements complets. Il s'adresse aux couples, aux amis ou aux familles qui veulent partir
-              facilement, sans rien préparer, depuis Annecy.
+            <p className="mt-6 text-muted-foreground leading-relaxed text-lg">
+              Pas de catalogue interminable : deux vans que l'on connaît parfaitement, avec une lecture simple des tarifs,
+              des kilomètres inclus et une vraie alternative à la réservation plateforme.
             </p>
-            <ul className="mt-8 space-y-3">
-              {equipment.map((e) => (
-                <li key={e} className="flex items-start gap-3 text-sm">
-                  <span className="mt-2 h-px w-4 bg-sage shrink-0" />
-                  <span className="text-foreground/85">{e}</span>
-                </li>
+            <div className="mt-8 grid gap-px bg-border">
+              {[
+                { icon: CalendarDays, label: "Réservation", value: "week-end, semaine, road trip" },
+                { icon: Fuel, label: "Kilométrage", value: "100 km / jour inclus" },
+                { icon: Shield, label: "Caution", value: "2 000 €" },
+                { icon: Sparkles, label: "Nettoyage", value: "39 € · offert si rendu propre" },
+              ].map(({ icon: Icon, label, value }) => (
+                <div key={label} className="bg-background p-5 flex items-center gap-4">
+                  <div className="h-10 w-10 shrink-0 bg-sage/15 text-sage flex items-center justify-center">
+                    <Icon size={18} strokeWidth={1.7} />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
+                    <p className="mt-1 text-sm text-foreground/85">{value}</p>
+                  </div>
+                </div>
               ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Pour qui */}
-      <section className="py-20 md:py-28 bg-muted/40">
-        <div className="container mx-auto">
-          <div className="max-w-2xl mb-16">
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Pour qui</p>
-            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              À qui s'adresse <em className="italic">la location ?</em>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                t: "Couples & amis",
-                d: "Pour un week-end dans les Aravis, un tour du Mont-Blanc ou une virée dans le Jura — partez léger, dormez où vous voulez.",
-              },
-              {
-                t: "Familles outdoor",
-                d: "Vélo, escalade, ski de rando, lacs : un van pour suivre vos enfants partout, à votre rythme.",
-              },
-              {
-                t: "Futurs vanlifers",
-                d: "Vous hésitez à faire aménager un van ? Testez la vie en van quelques jours, on en reparle après.",
-              },
-            ].map((c) => (
-              <article key={c.t} className="bg-background p-8 md:p-10">
-                <h3 className="font-serif text-2xl md:text-3xl">{c.t}</h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{c.d}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Avantages location */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto grid md:grid-cols-12 gap-12 items-start">
-          <div className="md:col-span-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Pourquoi nous</p>
-            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Un van prêt à partir, <em className="italic">depuis Annecy</em>.
-            </h2>
-          </div>
-          <ul className="md:col-span-7 grid sm:grid-cols-2 gap-px bg-border">
-            {[
-              { t: "Départ Annecy / Chapeiry", d: "À 15 min de l'A41, accès facile depuis toute la Haute-Savoie." },
-              { t: "Prise en main complète", d: "1h sur place avant le départ — eau, élec, conduite, conseils itinéraires." },
-              { t: "Van bichonné", d: "Entretien suivi par l'artisan qui l'a aménagé. Aucune mauvaise surprise." },
-              { t: "Idéal sports outdoor", d: "Porte-vélos, barres ski, espace matos pensé pour la rando, le trail, le VTT." },
-            ].map((a) => (
-              <li key={a.t} className="bg-background p-6 md:p-8">
-                <p className="font-serif text-xl">{a.t}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{a.d}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Section CSE — la vedette */}
-      <section className="py-24 md:py-36 bg-forest text-cream relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src={vanInterior}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="relative container mx-auto">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-sage-light mb-6">
-              — Offre dédiée
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-cream text-balance">
-              Une offre vanlife pour votre <em className="italic">CSE / comité d'entreprise</em>.
-            </h2>
-            <p className="mt-8 text-cream/80 text-lg leading-relaxed max-w-2xl">
-              Signature Van propose aux comités d'entreprise de la région d'Annecy un partenariat
-              clé en main : remise dédiée, communication interne et un avantage salarié original,
-              parfaitement aligné avec une culture montagne et outdoor.
-            </p>
-          </div>
-
-          <div className="mt-16 grid md:grid-cols-2 gap-px bg-cream/15">
-            {cseAdvantages.map((a) => (
-              <article key={a.t} className="bg-forest p-8 md:p-10">
-                <h3 className="font-serif text-2xl md:text-3xl text-cream">{a.t}</h3>
-                <p className="mt-4 text-cream/75 leading-relaxed">{a.d}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-16 p-10 md:p-12 bg-cream text-forest">
-            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-sage mb-4">— Responsable CSE ?</p>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight">
-                  Construisons ensemble un avantage <em className="italic">qui marque les esprits</em>.
-                </h3>
-                <p className="mt-4 text-forest/75 leading-relaxed max-w-xl">
-                  Contactez-nous pour recevoir notre dossier partenariat CSE :
-                  grille tarifaire dédiée, supports de communication et exemples
-                  de partenariats existants en Haute-Savoie.
-                </p>
-              </div>
-              <Link
-                to="/contact"
-                className="inline-flex items-center bg-forest text-cream px-8 py-4 text-sm tracking-wide hover:bg-forest-deep transition-colors whitespace-nowrap"
-              >
-                Demander l'offre CSE
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA particulier */}
-      <section className="py-20 md:py-28 bg-sand">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-4xl md:text-5xl leading-tight text-balance">
-            Prêt à <em className="italic">partir</em> ?
-          </h2>
-          <p className="mt-6 text-foreground/75 leading-relaxed">
-            Réservez votre van pour un week-end ou une semaine — on vous répond sous 48h.
+      <section className="py-20 md:py-28 bg-muted/40">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— La flotte</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Deux vans, deux façons de partir, <em className="italic">un même niveau de soin</em>.
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-px bg-border">
+            {fleet.map((van) => (
+              <article key={van.name} className="bg-background">
+                <div className="aspect-[16/10] overflow-hidden bg-muted">
+                  <img src={van.image} alt={van.alt} loading="lazy" className="h-full w-full object-cover" />
+                </div>
+                <div className="p-8 md:p-10">
+                  <p className="text-xs uppercase tracking-[0.25em] text-sage">{van.tag}</p>
+                  <h3 className="mt-3 font-serif text-3xl md:text-4xl leading-tight">{van.name}</h3>
+                  <p className="mt-2 text-sm uppercase tracking-[0.2em] text-muted-foreground">{van.vehicle}</p>
+                  <p className="mt-6 text-muted-foreground leading-relaxed">{van.summary}</p>
+
+                  <ul className="mt-8 space-y-3">
+                    {van.specs.map((spec) => (
+                      <li key={spec} className="flex gap-3 text-sm text-foreground/85">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage" />
+                        <span>{spec}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <dl className="mt-8 grid sm:grid-cols-2 gap-px bg-border">
+                    {van.meta.map((item) => (
+                      <div key={item.label} className="bg-background p-4">
+                        <dt className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{item.label}</dt>
+                        <dd className="mt-1 text-sm text-foreground/85">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Tarifs</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Une grille simple, pensée pour être <em className="italic">lue en un coup d'œil</em>.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {seasons.map((season) => (
+              <article key={season.name} className="border border-border bg-muted/20 p-8">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{season.name}</p>
+                <p className="mt-4 font-serif text-5xl leading-none">{season.price}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{season.period}</p>
+                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par jour</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 grid lg:grid-cols-3 gap-px bg-border">
+            <div className="bg-background p-6 md:p-8">
+              <h3 className="font-serif text-2xl">Kilométrage</h3>
+              <ul className="mt-5 space-y-3 text-sm text-foreground/85">
+                <li>100 km / jour inclus</li>
+                <li>200 km / jour : +15 € / jour</li>
+                <li>Au-delà : 0,15 € / km</li>
+              </ul>
+            </div>
+            <div className="bg-background p-6 md:p-8">
+              <h3 className="font-serif text-2xl">Frais</h3>
+              <ul className="mt-5 space-y-3 text-sm text-foreground/85">
+                <li>Nettoyage : 39 €</li>
+                <li>Offert si le van revient propre</li>
+                <li>Caution : 2 000 €</li>
+              </ul>
+            </div>
+            <div className="bg-background p-6 md:p-8">
+              <h3 className="font-serif text-2xl">Remises</h3>
+              <ul className="mt-5 space-y-3 text-sm text-foreground/85">
+                <li>-10 % dès 7 jours</li>
+                <li>-15 % dès 14 jours</li>
+                <li>-20 % dès 21 jours</li>
+                <li>Early booking : -5 % à +4 mois</li>
+                <li>Réservation directe : -15 % vs Yescapa</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm text-muted-foreground">
+            💼 Salarié avec un CE / CSE ? Une remise complémentaire est possible — précisez-le lors de votre demande.
           </p>
-          <Link to="/contact" className="mt-10 inline-flex items-center bg-forest text-cream px-8 py-4 text-sm tracking-wide hover:bg-forest-deep transition-colors">
-            Réserver le van
-          </Link>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-muted/40">
+        <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+          <div className="md:col-span-5">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Inclus & avantages</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Tout ce qu'il faut pour partir <em className="italic">sans friction</em>.
+            </h2>
+            <div className="mt-10 aspect-[4/5] overflow-hidden bg-muted hidden md:block">
+              <img src={vanBedroom} alt="Coin couchage dans un van Signature Van" loading="lazy" className="h-full w-full object-cover" />
+            </div>
+          </div>
+
+          <div className="md:col-span-7 space-y-10">
+            <div className="grid gap-px bg-border">
+              {included.map((item) => (
+                <div key={item} className="bg-background px-6 py-5 flex gap-3 text-sm text-foreground/85">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-px bg-border">
+              {advantages.map((item) => (
+                <article key={item.title} className="bg-background p-6 md:p-7">
+                  <h3 className="font-serif text-2xl leading-tight">{item.title}</h3>
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Pour qui</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Pensé pour les usages que l'on voit vraiment <em className="italic">autour d'Annecy</em>.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {personas.map(({ title, text, icon: Icon }) => (
+              <article key={title} className="border border-border p-8 bg-muted/10">
+                <div className="h-11 w-11 bg-sage/15 text-sage flex items-center justify-center">
+                  <Icon size={20} strokeWidth={1.6} />
+                </div>
+                <h3 className="mt-6 font-serif text-3xl leading-tight">{title}</h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-forest text-cream">
+        <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+          <div className="md:col-span-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-sage-light mb-4">— Réservation hybride</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Réserver en direct quand c'est possible, garder Yescapa comme <em className="italic">point d'appui</em>.
+            </h2>
+            <p className="mt-6 text-cream/75 text-lg leading-relaxed max-w-3xl">
+              Si vos dates sont définies, la réservation directe reste la meilleure option pour bénéficier de l'échange le plus fluide
+              et de l'avantage tarifaire de -15 % par rapport à la plateforme. Yescapa reste disponible comme alternative de réservation.
+            </p>
+          </div>
+          <div className="md:col-span-4 flex flex-col gap-4">
+            <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
+              <Link to="/contact">Demander une réservation directe</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
+              <a href="https://www.yescapa.fr/campers/113054?date_from=2026-05-15&date_to=2026-05-18&hour_from=14&hour_to=12" target="_blank" rel="noreferrer">
+                Voir les annonces Yescapa <ArrowRight />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div className="lg:col-span-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Demande de réservation</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Racontez-nous votre <em className="italic">prochain départ</em>.
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed text-lg">
+              En quelques infos, on peut vous orienter vers le bon van, vérifier les disponibilités et intégrer votre avantage CE / CSE si besoin.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 border border-border p-6 md:p-8 bg-muted/10">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nom</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Votre nom" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="vous@email.fr" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Téléphone</FormLabel>
+                        <FormControl>
+                          <Input type="tel" placeholder="06 00 00 00 00" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="van"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Van souhaité</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Choisir un van" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Le Cocon Nomade">Le Cocon Nomade</SelectItem>
+                            <SelectItem value="L'Échappée Belle">L'Échappée Belle</SelectItem>
+                            <SelectItem value="Je ne sais pas encore">Je ne sais pas encore</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="startDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Date de départ</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="endDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Date de retour</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="travellers"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Voyageurs</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Ex. 2 adultes + 1 enfant" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Votre message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={6}
+                          placeholder="Dates souples, destination envisagée, âge de l'enfant, besoin CE / CSE, questions sur les équipements..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Plus votre demande est précise, plus le retour sera utile.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="cse"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-md border border-border p-4 bg-background">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(Boolean(checked))} />
+                      </FormControl>
+                      <div className="space-y-1">
+                        <FormLabel>Je dispose d'un CE / CSE</FormLabel>
+                        <FormDescription>
+                          Précisez le nom de l'organisme dans votre message pour que l'on regarde la remise possible.
+                        </FormDescription>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" size="lg" disabled={sending}>
+                  {sending ? "Préparation…" : "Préparer mon email de réservation"}
+                </Button>
+              </form>
+            </Form>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-muted/40">
+        <div className="container mx-auto grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
+          <div className="lg:col-span-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— FAQ</p>
+            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
+              Les réponses aux questions qui reviennent <em className="italic">avant le départ</em>.
+            </h2>
+          </div>
+          <div className="lg:col-span-8 border-t border-border">
+            <Accordion type="single" collapsible>
+              {faq.map((item) => (
+                <AccordionItem key={item.q} value={item.q}>
+                  <AccordionTrigger className="text-left text-lg font-serif hover:no-underline">{item.q}</AccordionTrigger>
+                  <AccordionContent className="text-base leading-relaxed text-muted-foreground">{item.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </section>
     </>

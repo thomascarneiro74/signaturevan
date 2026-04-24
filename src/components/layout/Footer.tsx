@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import logoLight from "@/assets/logo-light.png";
 
 export const Footer = () => {
   return (
     <footer className="bg-forest-deep text-cream/80 py-16">
       <div className="container mx-auto grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5">
-          <p className="font-serif text-4xl md:text-5xl text-cream leading-tight">
-            Signature <em className="italic">Van</em>
-          </p>
-          <p className="mt-4 text-cream/60 max-w-sm text-sm leading-relaxed">
+          <img
+            src={logoLight}
+            alt="Signature Van"
+            className="h-12 w-auto object-contain"
+            loading="lazy"
+          />
+          <p className="mt-5 text-cream/60 max-w-sm text-sm leading-relaxed">
             Atelier d'aménagement et location de vans sur mesure.
             Chapeiry, près d'Annecy — Haute-Savoie.
           </p>

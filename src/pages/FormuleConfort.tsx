@@ -210,7 +210,7 @@ const FormuleConfort = () => {
             <p>
               La Formule Confort s'adresse à celles et ceux qui possèdent un fourgon L2H1 et veulent
               un aménagement complet, beau et fonctionnel — week-ends nature, escapades sportives,
-              vacances en famille, déplacements pro avec confort.
+              escapades en duo ou en couple + enfant, déplacements pro avec confort.
             </p>
             <p>
               C'est aussi le bon choix pour un premier van : le couple banquettes-cuisine couvre 90 %
