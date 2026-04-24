@@ -46,7 +46,7 @@ export const Navbar = () => {
           <img
             src={logoSrc}
             alt="Signature Van"
-            className="h-9 md:h-10 w-auto object-contain"
+            className="h-14 md:h-16 w-auto object-contain"
             loading="eager"
           />
         </Link>
