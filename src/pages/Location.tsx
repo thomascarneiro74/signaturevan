@@ -253,7 +253,7 @@ const Location = () => {
       <PageHeader
         eyebrow="Location"
         title={<>Location de vans aménagés <em className="italic">à Annecy</em>.</>}
-        intro="Deux vans prêts à partir depuis Chapeiry, pensés pour les week-ends alpins, les micro-aventures et les premières escapades en petite famille."
+        intro="Deux vans prêts à partir, pensés pour les week-ends alpins, les micro-aventures et les premières escapades en petite famille."
       />
 
       <section className="py-20 md:py-28 bg-background">
@@ -315,7 +315,9 @@ const Location = () => {
                   <img src={van.image} alt={van.alt} loading="lazy" className="h-full w-full object-cover" />
                 </div>
                 <div className="p-8 md:p-10">
-                  <p className="text-xs uppercase tracking-[0.25em] text-sage">{van.tag}</p>
+                  {van.tag && (
+                    <p className="text-xs uppercase tracking-[0.25em] text-sage">{van.tag}</p>
+                  )}
                   <h3 className="mt-3 font-serif text-3xl md:text-4xl leading-tight">{van.name}</h3>
                   <p className="mt-2 text-sm uppercase tracking-[0.2em] text-muted-foreground">{van.vehicle}</p>
                   <p className="mt-6 text-muted-foreground leading-relaxed">{van.summary}</p>
@@ -355,11 +357,14 @@ const Location = () => {
 
           <div className="grid md:grid-cols-3 gap-5">
             {seasons.map((season) => (
-              <article key={season.name} className="border border-border bg-muted/20 p-8">
+              <article key={season.name} className="relative border border-border bg-muted/20 p-8">
+                <span className="absolute top-4 right-4 inline-flex items-center rounded-full bg-sage/15 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.15em] text-sage">
+                  {season.minNights}
+                </span>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{season.name}</p>
                 <p className="mt-4 font-serif text-5xl leading-none">{season.price}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{season.period}</p>
-                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par jour</p>
+                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par nuit</p>
               </article>
             ))}
           </div>
@@ -407,7 +412,7 @@ const Location = () => {
               Tout ce qu'il faut pour partir <em className="italic">sans friction</em>.
             </h2>
             <div className="mt-10 aspect-[4/5] overflow-hidden bg-muted hidden md:block">
-              <img src={vanBedroom} alt="Coin couchage dans un van Signature Van" loading="lazy" className="h-full w-full object-cover" />
+              <img src={coconNomadeInterieur} alt="Intérieur cosy du Cocon Nomade au coucher du soleil" loading="lazy" className="h-full w-full object-cover" />
             </div>
           </div>
 
