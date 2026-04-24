@@ -4,23 +4,23 @@ import { Hero } from "@/components/sections/Hero";
 import { SavoirFaire } from "@/components/sections/SavoirFaire";
 import { Temoignages } from "@/components/sections/Temoignages";
 import vanAnnecy from "@/assets/van-annecy.jpg";
-import vanKitchen from "@/assets/van-kitchen.jpg";
-import vanBedroom from "@/assets/van-bedroom.jpg";
+import tribuCuisine from "@/assets/realisations/tribu/tribu-cuisine-arriere-frene.jpg";
+import tribuDetail from "@/assets/realisations/tribu/tribu-detail-arrondi-meuble-entree.jpg";
 
 const offers = [
   {
     title: "Aménagement complet",
     desc: "Conception, isolation liège, électricité, mobilier bois et finitions — un van clé en main, pensé pour vous.",
     to: "/services",
-    img: vanKitchen,
-    alt: "Aménagement complet de van en bois sur mesure en Haute-Savoie",
+    img: tribuCuisine,
+    alt: "Aménagement complet de van — cuisine arrière en frêne, meubles vert de gris — Signature Van Annecy",
   },
   {
     title: "Prestations à la carte",
     desc: "Isolation liège projeté, élec 12V/230V, ouvertures, menuiserie sur mesure, optimisation des rangements.",
     to: "/services",
-    img: vanBedroom,
-    alt: "Menuiserie et rangements sur mesure pour van à Annecy",
+    img: tribuDetail,
+    alt: "Détail menuiserie ébéniste — meuble d'entrée arrondi sur mesure à Annecy",
   },
   {
     title: "Location de van aménagé",

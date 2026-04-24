@@ -1,133 +1,286 @@
 import { Link } from "react-router-dom";
+import { Snowflake, Hammer, Bed, Zap, Droplet, Wind, Move } from "lucide-react";
 import { Seo } from "@/components/Seo";
 import { PageHeader } from "@/components/PageHeader";
-import van1 from "@/assets/van-exterior.jpg";
-import van2 from "@/assets/van-kitchen.jpg";
-import van3 from "@/assets/van-bedroom.jpg";
-import van4 from "@/assets/hero-van.jpg";
-import van5 from "@/assets/craft-detail.jpg";
-import van6 from "@/assets/van-annecy.jpg";
 
-const projects = [
+import tribuExterieur from "@/assets/realisations/tribu/tribu-fiat-talento-exterieur.jpg";
+import tribuCuisine from "@/assets/realisations/tribu/tribu-cuisine-arriere-frene.jpg";
+import tribuSalon from "@/assets/realisations/tribu/tribu-salon-velours-cotele.jpg";
+import tribuCouchageParents from "@/assets/realisations/tribu/tribu-couchage-parents-140x200.jpg";
+import tribuCouchageCabine from "@/assets/realisations/tribu/tribu-couchage-enfant-cabine.jpg";
+import tribuDetailArrondi from "@/assets/realisations/tribu/tribu-detail-arrondi-meuble-entree.jpg";
+
+const tribu = {
+  name: "Tribu",
+  vehicle: "Fiat Talento L2H1 — 2019",
+  tagline: "Compact, mais 3 vrais couchages.",
+  highlights: [
+    "3 couchages — 140×200 + 140×70 cabine",
+    "Cuisine arrière indoor / outdoor",
+    "Détail ébéniste : meuble d'entrée arrondi",
+  ],
+  story: [
+    "Une famille de 3 nous a confié son Fiat Talento avec une demande claire : partir en van sans renoncer au confort, dans un véhicule compact qui reste facile à conduire au quotidien.",
+    "Le défi tenait dans peu de mètres carrés : faire dormir trois personnes confortablement, intégrer une vraie cuisine, et garder un esprit chaleureux. Nous avons pensé l'aménagement autour du couchage parental 140×200 à l'arrière, avec un lit enfant amovible 140×70 qui se cale entre les sièges avant de la cabine — une astuce d'ébéniste qui change tout.",
+    "La cuisine, placée tout à l'arrière, s'utilise indifféremment portes fermées ou grand ouvertes face à la nature. Le plan de travail en frêne massif, le stratifié vert de gris des meubles, le velours côtelé blanc cassé des assises et le détail arrondi du meuble d'entrée donnent au van une signature visuelle douce, naturelle, faite pour durer.",
+  ],
+};
+
+const gallery = [
   {
-    img: van1, ratio: "aspect-[4/3]",
-    vehicle: "Mercedes Sprinter L2H2",
-    title: "« Borealis » — couple grands voyageurs",
-    needs: "Vivre 6 mois par an en van, en autonomie complète, été comme hiver.",
-    solutions: "Isolation liège projeté, batterie 200Ah + 300W solaire, chauffage diesel, douche intérieure, lit transversal et garage à vélos.",
-    materials: "Chêne massif, liège, lin, laiton",
-    alt: "Aménagement Mercedes Sprinter sur mesure à Annecy",
+    src: tribuExterieur,
+    alt: "Fiat Talento L2H1 aménagé Tribu vue extérieure au coucher du soleil — Signature Van Annecy",
+    span: "md:col-span-8 md:row-span-2",
+    ratio: "aspect-[4/3]",
   },
   {
-    img: van2, ratio: "aspect-[3/4]",
-    vehicle: "Volkswagen Crafter",
-    title: "« Nordica » — cuisine intégrée",
-    needs: "Une vraie cuisine pour cuisiner partout, sans sacrifier le couchage.",
-    solutions: "Plan de travail noyer, évier inox, gaz 2 feux, frigo 90L à tiroir, crédence carrelage sage.",
-    materials: "Noyer, frêne, faïence, cuivre",
-    alt: "Cuisine intégrée d'aménagement de van en Haute-Savoie",
+    src: tribuCuisine,
+    alt: "Cuisine arrière en frêne et meubles vert de gris — aménagement Fiat Talento à Annecy",
+    span: "md:col-span-4",
+    ratio: "aspect-[4/5]",
   },
   {
-    img: van3, ratio: "aspect-[3/4]",
-    vehicle: "Fiat Ducato L3H2",
-    title: "« Refuge » — cellule nuit cosy",
-    needs: "Un cocon douillet pour les week-ends en montagne en couple.",
-    solutions: "Lit fixe 140×200, vue arrière panoramique, liseuses orientables, rangements sous-coffre.",
-    materials: "Pin maritime, lin écru, laine sage",
-    alt: "Cellule nuit aménagement van Fiat Ducato à Annecy",
+    src: tribuDetailArrondi,
+    alt: "Détail ébéniste : meuble d'entrée arrondi en stratifié vert de gris — Signature Van",
+    span: "md:col-span-4",
+    ratio: "aspect-[4/5]",
   },
   {
-    img: van4, ratio: "aspect-[4/3]",
-    vehicle: "Renault Master L2H2",
-    title: "« Aravis » — famille outdoor",
-    needs: "Faire dormir 2 adultes + 2 enfants, avec rangements pour ski et VTT.",
-    solutions: "Lit pavillon 140×190, banquette-lit 120×190, garage XL avec rails ski et fixations vélos.",
-    materials: "Bouleau, OSB filmé, tissus techniques",
-    alt: "Aménagement van familial pour la montagne en Haute-Savoie",
+    src: tribuSalon,
+    alt: "Espace salon avec banquettes en velours côtelé et table en frêne — aménagement van Haute-Savoie",
+    span: "md:col-span-6",
+    ratio: "aspect-[3/2]",
   },
   {
-    img: van5, ratio: "aspect-[3/4]",
-    vehicle: "Citroën Jumper L3H2",
-    title: "« Atelier mobile » — artisan voyageur",
-    needs: "Un van qui sert à la fois d'atelier itinérant et de lieu de vie.",
-    solutions: "Établi escamotable, rangements outils sécurisés, modules amovibles pour basculer mode atelier / nuit.",
-    materials: "Multiplis bouleau, acier brossé",
-    alt: "Aménagement van professionnel atelier mobile à Annecy",
+    src: tribuCouchageParents,
+    alt: "Couchage parents 140×200 déplié à l'arrière du Fiat Talento — Signature Van Annecy",
+    span: "md:col-span-6",
+    ratio: "aspect-[3/2]",
   },
   {
-    img: van6, ratio: "aspect-[4/3]",
-    vehicle: "Ford Transit Custom",
-    title: "« Léman » — week-ender lac",
-    needs: "Un petit van compact, facile à conduire en ville, parfait pour 2.",
-    solutions: "Lit déployable, kitchenette compacte, rangements muraux verticaux pour gain d'espace.",
-    materials: "Frêne huilé, liège, lin sable",
-    alt: "Petit van aménagé compact pour les bords du lac d'Annecy",
+    src: tribuCouchageCabine,
+    alt: "Couchage enfant 140×70 amovible installé en cabine — aménagement famille van Annecy",
+    span: "md:col-span-12",
+    ratio: "aspect-[16/10]",
   },
 ];
+
+const specs = [
+  {
+    icon: Snowflake,
+    label: "Isolation",
+    value: "Liège projeté, parois et plafond habillés en feutrine.",
+  },
+  {
+    icon: Hammer,
+    label: "Menuiserie",
+    value: "Contreplaqué + stratifié haut de gamme vert de gris, plan de travail frêne massif.",
+  },
+  {
+    icon: Bed,
+    label: "Couchages",
+    value: "Lit parents 140×200 (mousse Bultex, housse velours côtelé blanc cassé) + lit enfant 140×70 amovible en cabine.",
+  },
+  {
+    icon: Zap,
+    label: "Électricité",
+    value: "Batterie AGM 140Ah, panneau solaire, chargeur DC/DC. 100 % 12V — USB, allume-cigare, spots LED.",
+  },
+  {
+    icon: Droplet,
+    label: "Circuit d'eau",
+    value: "Évier inox, robinet à douchette extensible, chauffe-eau électrique, réservoir propre 54L, eaux usées 28L sous châssis.",
+  },
+  {
+    icon: Wind,
+    label: "Ouvertures",
+    value: "Deux fenêtres aux portes arrière, lanterneau de toit, aération basse — flux d'air permanent.",
+  },
+  {
+    icon: Move,
+    label: "Mobilier amovible",
+    value: "Table en frêne démontable, lit cabine clipsable — modularité totale entre jour et nuit.",
+  },
+];
+
+const projectJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: "Tribu — Aménagement Fiat Talento L2H1",
+  creator: {
+    "@type": "LocalBusiness",
+    name: "Signature Van",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chapeiry",
+      postalCode: "74540",
+      addressRegion: "Haute-Savoie",
+      addressCountry: "FR",
+    },
+  },
+  description:
+    "Aménagement sur mesure d'un Fiat Talento L2H1 pour une famille de 3 : isolation liège projeté, mobilier contreplaqué stratifié vert de gris, plan de travail frêne, 3 couchages, cuisine arrière indoor/outdoor.",
+  image: "https://signaturevan.fr/og-tribu.jpg",
+  dateCreated: "2024",
+  locationCreated: {
+    "@type": "Place",
+    name: "Atelier Signature Van, Chapeiry, Haute-Savoie",
+  },
+};
 
 const Realisations = () => {
   return (
     <>
       <Seo
-        title="Réalisations — Aménagements de vans sur mesure | Signature Van Annecy"
-        description="Découvrez nos aménagements de vans réalisés en Haute-Savoie : Sprinter, Crafter, Ducato, Master… Bois massif, isolation liège et solutions sur mesure."
+        title="« Tribu » — Aménagement Fiat Talento sur mesure à Annecy | Signature Van"
+        description="Découvrez Tribu, notre aménagement Fiat Talento L2H1 pour une famille de 3 : cuisine arrière en frêne, isolation liège, 3 couchages. Artisan ébéniste à Chapeiry, près d'Annecy."
         path="/realisations"
+        jsonLd={projectJsonLd}
       />
       <PageHeader
-        eyebrow="Portfolio"
-        title={<>Réalisations — aménagements de vans <em className="italic">sur mesure</em>.</>}
-        intro="Quelques projets d'aménagement réalisés à l'atelier de Chapeiry, près d'Annecy. Chaque van est unique : véhicule, matériaux, ergonomie, usages."
+        eyebrow="Réalisations"
+        title={<>Nos aménagements de vans <em className="italic">sur mesure</em>.</>}
+        intro="Chaque van est unique : véhicule, matériaux, ergonomie, usages. Découvrez nos projets livrés depuis l'atelier de Chapeiry, près d'Annecy."
       />
 
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto space-y-24 md:space-y-32">
-          {projects.map((p, i) => (
-            <article key={p.title} className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-              <div className={`md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}>
-                <div className={`${p.ratio} overflow-hidden bg-muted`}>
-                  <img
-                    src={p.img}
-                    alt={p.alt}
-                    loading="lazy"
-                    className="h-full w-full object-cover hover:scale-[1.03] transition-transform duration-[1800ms]"
-                  />
-                </div>
+      {/* Hero projet */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-end">
+            <div className="md:col-span-7">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={tribuExterieur}
+                  alt="Fiat Talento aménagé Tribu — Signature Van, artisan aménageur à Annecy"
+                  className="h-full w-full object-cover"
+                  width={1920}
+                  height={1440}
+                />
               </div>
-              <div className={`md:col-span-5 ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                <p className="text-xs uppercase tracking-[0.3em] text-sage mb-4">{p.vehicle}</p>
-                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-balance">
-                  {p.title}
-                </h2>
-                <dl className="mt-8 space-y-5 text-sm">
-                  <div>
-                    <dt className="uppercase tracking-[0.2em] text-xs text-muted-foreground mb-1">Besoins</dt>
-                    <dd className="text-foreground/85 leading-relaxed">{p.needs}</dd>
-                  </div>
-                  <div>
-                    <dt className="uppercase tracking-[0.2em] text-xs text-muted-foreground mb-1">Solutions apportées</dt>
-                    <dd className="text-foreground/85 leading-relaxed">{p.solutions}</dd>
-                  </div>
-                  <div>
-                    <dt className="uppercase tracking-[0.2em] text-xs text-muted-foreground mb-1">Matériaux principaux</dt>
-                    <dd className="text-foreground/85 leading-relaxed">{p.materials}</dd>
-                  </div>
-                </dl>
-              </div>
-            </article>
-          ))}
+            </div>
+            <div className="md:col-span-5">
+              <p className="text-xs uppercase tracking-[0.3em] text-sage mb-4">
+                {tribu.vehicle}
+              </p>
+              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-balance">
+                « {tribu.name} »
+              </h2>
+              <p className="mt-6 font-serif text-2xl md:text-3xl text-muted-foreground italic leading-snug">
+                {tribu.tagline}
+              </p>
+              <ul className="mt-10 space-y-3">
+                {tribu.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-3 text-sm">
+                    <span className="mt-2 h-px w-6 bg-sage shrink-0" />
+                    <span className="text-foreground/85">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* Galerie bento */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-12 gap-4 md:gap-6">
+            {gallery.map((img, i) => (
+              <figure key={i} className={`${img.span} group overflow-hidden bg-muted`}>
+                <div className={img.ratio}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-[1500ms]"
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Narration / Histoire du projet */}
+      <section className="py-20 md:py-28 bg-muted/40">
+        <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-16">
+          <div className="md:col-span-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">
+              — L'histoire
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] text-balance">
+              Une famille, un van compact, <em className="italic">trois couchages</em>.
+            </h2>
+          </div>
+          <div className="md:col-span-7 md:col-start-6 space-y-6 text-muted-foreground text-lg leading-relaxed">
+            {tribu.story.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fiche technique */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto">
+          <div className="max-w-2xl mb-16">
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">
+              — Fiche technique
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] text-balance">
+              Le projet, dans <em className="italic">le détail</em>.
+            </h2>
+          </div>
+          <dl className="grid md:grid-cols-2 gap-px bg-border">
+            {specs.map(({ icon: Icon, label, value }) => (
+              <div key={label} className="bg-background p-6 md:p-8 flex gap-5">
+                <div className="shrink-0">
+                  <div className="h-11 w-11 flex items-center justify-center bg-sage/15 text-sage">
+                    <Icon size={20} strokeWidth={1.5} />
+                  </div>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                    {label}
+                  </dt>
+                  <dd className="text-foreground/85 leading-relaxed">{value}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Bandeau honnêteté */}
+      <section className="py-20 md:py-28 bg-sand">
+        <div className="container mx-auto max-w-3xl text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-forest mb-6">
+            — En toute transparence
+          </p>
+          <p className="font-serif text-2xl md:text-3xl leading-relaxed text-foreground text-balance">
+            « Tribu » est notre première réalisation livrée. L'atelier est jeune,
+            <em className="italic"> l'exigence est intacte</em> — chaque détail
+            a été pensé, ajusté, ré-ajusté. D'autres projets sont déjà en cours :
+            ils rejoindront bientôt cette page.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
       <section className="py-20 md:py-28 bg-forest text-cream">
         <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
             Votre van sera <em className="italic">le prochain</em>.
           </h2>
-          <p className="mt-6 text-cream/75 leading-relaxed">
-            Chaque projet commence par un échange. Racontez-nous le vôtre.
+          <p className="mt-6 text-cream/75 text-lg leading-relaxed">
+            Chaque projet commence par un échange. Racontez-nous le vôtre,
+            on en discute autour d'un café à l'atelier.
           </p>
-          <Link to="/contact" className="mt-10 inline-flex items-center bg-cream text-forest px-8 py-4 text-sm tracking-wide hover:bg-sand transition-colors">
-            Démarrer un projet
+          <Link
+            to="/contact"
+            className="mt-10 inline-flex items-center bg-cream text-forest px-8 py-4 text-sm tracking-wide hover:bg-sand transition-colors"
+          >
+            Discutons de votre projet
           </Link>
         </div>
       </section>
