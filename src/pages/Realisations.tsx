@@ -35,8 +35,8 @@ const talento = {
   ],
   story: [
     "Un couple avec un jeune enfant nous a confié son Fiat Talento avec une demande claire : partir en van sans renoncer au confort, dans un véhicule compact qui reste facile à conduire au quotidien.",
-    "Le défi tenait dans peu de mètres carrés : faire dormir trois personnes confortablement, intégrer une vraie cuisine, et garder un esprit chaleureux. Nous avons pensé l'aménagement autour du couchage parental 140×200 à l'arrière, avec un lit enfant amovible 140×70 qui se cale entre les sièges avant de la cabine — une astuce d'ébéniste qui change tout.",
-    "La cuisine, placée tout à l'arrière, s'utilise indifféremment portes fermées ou grand ouvertes face à la nature. Le plan de travail en frêne massif, le stratifié vert de gris des meubles, le velours côtelé blanc cassé des assises et le détail arrondi du meuble d'entrée donnent au van une signature visuelle douce, naturelle, faite pour durer.",
+    "Le défi tenait dans peu de mètres carrés : faire dormir trois personnes confortablement, intégrer une vraie cuisine, et garder un esprit chaleureux. Nous avons pensé l'aménagement autour du couchage parental 140×200 à l'arrière, avec un lit enfant amovible 140×70 qui se cale entre les sièges avant de la cabine.",
+    "La cuisine, placée tout à l'arrière, permet de cuisiner aussi bien à l'intérieur qu'à l'extérieur. Le plan de travail en frêne massif, le stratifié vert de gris des meubles, le velours côtelé blanc cassé des assises et le détail arrondi du meuble d'entrée donnent au van une signature visuelle douce, naturelle, faite pour durer.",
   ],
   gallery: [
     { src: talentoExterieur, alt: "Fiat Talento L2H1 aménagé sur mesure vue extérieure au coucher du soleil — Signature Van Annecy", span: "md:col-span-8 md:row-span-2", ratio: "aspect-[4/3]" },
@@ -49,7 +49,7 @@ const talento = {
   specs: [
     { icon: Snowflake, label: "Isolation", value: "Liège projeté, parois et plafond habillés en feutrine." },
     { icon: Hammer, label: "Menuiserie", value: "Contreplaqué + stratifié haut de gamme vert de gris, plan de travail frêne massif." },
-    { icon: Bed, label: "Couchages", value: "Lit parents 140×200 (mousse Bultex, housse velours côtelé blanc cassé) + lit enfant 140×70 amovible en cabine." },
+    { icon: Bed, label: "Couchages", value: "Lit parents 140×200 dépliable « en peigne » (mousse Bultex, housse velours côtelé blanc cassé) + lit enfant 140×70 amovible en cabine." },
     { icon: Zap, label: "Électricité", value: "Batterie AGM 140Ah, panneau solaire, chargeur DC/DC. 100 % 12V — USB, allume-cigare, spots LED." },
     { icon: Droplet, label: "Circuit d'eau", value: "Évier inox, robinet à douchette extensible, chauffe-eau électrique, réservoir propre 54L, eaux usées 28L sous châssis." },
     { icon: Wind, label: "Ouvertures", value: "Deux fenêtres aux portes arrière, lanterneau de toit, aération basse — flux d'air permanent." },
