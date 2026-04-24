@@ -44,64 +44,64 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import vanAnnecy from "@/assets/van-annecy.jpg";
-import vanExterior from "@/assets/van-exterior.jpg";
-import vanKitchen from "@/assets/van-kitchen.jpg";
-import vanBedroom from "@/assets/van-bedroom.jpg";
+import coconNomadeInterieur from "@/assets/cocon-nomade-interieur.jpg";
+import echappeeBelleInterieur from "@/assets/echappee-belle-interieur.jpg";
 
 const fleet = [
   {
     name: "Le Cocon Nomade",
     vehicle: "Fiat Talento aménagé",
-    tag: "Escapades à deux",
-    image: vanKitchen,
-    alt: "Cuisine intérieure du van Le Cocon Nomade aménagé par Signature Van",
+    tag: "Escapades en duo ou en famille",
+    image: coconNomadeInterieur,
+    alt: "Intérieur du van Cocon Nomade au coucher du soleil — coin repas et cuisine",
     summary:
       "Un van compact, chaleureux et facile à prendre en main pour les week-ends impro, les lacs alpins et les premières virées vanlife.",
     specs: [
       "2 adultes + 1 enfant max. 10 ans",
       "Lit principal 140 × 200 + couchage cabine enfant",
-      "Cuisine équipée, glacière compression, vaisselle complète",
-      "Hauteur 1,96 m · permis B · dépassement 0,15 €/km",
+      "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, ballon eau chaude, robinet douchette extensible, réchaud amovible double feux",
+      "Hauteur 2,06 m · permis B · dépassement 0,15 €/km",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
       { label: "Énergie", value: "Diesel" },
-      { label: "Autonomie", value: "Élec 12V + spots LED" },
+      { label: "Autonomie", value: "Recharge en roulant + panneau solaire · prises USB et 12V" },
       { label: "Esprit", value: "Petit cocon prêt à partir" },
     ],
   },
   {
     name: "L'Échappée Belle",
     vehicle: "Renault Trafic L2H1 — 2019",
-    tag: "Petite famille outdoor",
-    image: vanExterior,
-    alt: "Vue extérieure du van L'Échappée Belle au départ d'Annecy",
+    tag: "",
+    image: echappeeBelleInterieur,
+    alt: "Intérieur de L'Échappée Belle — meuble cuisine et porte latérale ouverte sur prairie et montagnes",
     summary:
       "Le van signature pour partir léger avec un vrai confort à bord : salon accueillant, lit principal généreux et couchage cabine enfant.",
     specs: [
       "3 places route · 2 adultes + 1 enfant",
-      "Lit arrière 140 × 200 + lit cabine 60/70 × 140",
-      "Réservoir eau, douchette, rangements et coin repas",
+      "Lit arrière 140 × 200 + lit cabine 60 × 140",
+      "Réserve d'eau par jerricans : 36 L eau propre + 12 L eaux usées · 1 feu gaz amovible · vaisselle complète",
       "Hauteur env. 2,10 m · caution 2 000 € · permis B",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
       { label: "Énergie", value: "Diesel" },
-      { label: "Autonomie", value: "Panneau solaire + batterie AGM" },
+      { label: "Autonomie", value: "Batterie auxiliaire rechargée en roulant · prises USB et 12V" },
       { label: "Usage", value: "Road trips Annecy & Alpes" },
     ],
   },
 ] as const;
 
 const seasons = [
-  { name: "Basse saison", price: "55 €", period: "hors vacances et grands ponts" },
-  { name: "Moyenne saison", price: "72 €", period: "printemps, automne, ponts" },
-  { name: "Haute saison", price: "94 €", period: "été et périodes très demandées" },
+  { name: "Basse saison", price: "55 €", period: "de novembre à mars", minNights: "2 nuits min." },
+  { name: "Moyenne saison", price: "72 €", period: "avril, mai, juin, septembre, octobre", minNights: "2 nuits min." },
+  { name: "Haute saison", price: "94 €", period: "juillet - août", minNights: "5 nuits min." },
 ] as const;
 
 const included = [
   "Assurance multirisques et assistance 24h/24",
   "Vaisselle, batterie de cuisine, cafetière et consommables de base",
+  "Couette et oreillers fournis pour chaque couchage",
   "Prise en main complète avant départ depuis Chapeiry / Annecy",
   "Éclairage LED, prises USB, rangements et table de repas",
   "Conseils d'itinéraires lacs, montagnes et spots nuit autour des Alpes",
@@ -253,7 +253,7 @@ const Location = () => {
       <PageHeader
         eyebrow="Location"
         title={<>Location de vans aménagés <em className="italic">à Annecy</em>.</>}
-        intro="Deux vans prêts à partir depuis Chapeiry, pensés pour les week-ends alpins, les micro-aventures et les premières escapades en petite famille."
+        intro="Deux vans prêts à partir, pensés pour les week-ends alpins, les micro-aventures et les premières escapades en petite famille."
       />
 
       <section className="py-20 md:py-28 bg-background">
@@ -315,7 +315,9 @@ const Location = () => {
                   <img src={van.image} alt={van.alt} loading="lazy" className="h-full w-full object-cover" />
                 </div>
                 <div className="p-8 md:p-10">
-                  <p className="text-xs uppercase tracking-[0.25em] text-sage">{van.tag}</p>
+                  {van.tag && (
+                    <p className="text-xs uppercase tracking-[0.25em] text-sage">{van.tag}</p>
+                  )}
                   <h3 className="mt-3 font-serif text-3xl md:text-4xl leading-tight">{van.name}</h3>
                   <p className="mt-2 text-sm uppercase tracking-[0.2em] text-muted-foreground">{van.vehicle}</p>
                   <p className="mt-6 text-muted-foreground leading-relaxed">{van.summary}</p>
@@ -355,11 +357,14 @@ const Location = () => {
 
           <div className="grid md:grid-cols-3 gap-5">
             {seasons.map((season) => (
-              <article key={season.name} className="border border-border bg-muted/20 p-8">
+              <article key={season.name} className="relative border border-border bg-muted/20 p-8">
+                <span className="absolute top-4 right-4 inline-flex items-center rounded-full bg-sage/15 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.15em] text-sage">
+                  {season.minNights}
+                </span>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{season.name}</p>
                 <p className="mt-4 font-serif text-5xl leading-none">{season.price}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{season.period}</p>
-                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par jour</p>
+                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par nuit</p>
               </article>
             ))}
           </div>
@@ -407,7 +412,7 @@ const Location = () => {
               Tout ce qu'il faut pour partir <em className="italic">sans friction</em>.
             </h2>
             <div className="mt-10 aspect-[4/5] overflow-hidden bg-muted hidden md:block">
-              <img src={vanBedroom} alt="Coin couchage dans un van Signature Van" loading="lazy" className="h-full w-full object-cover" />
+              <img src={coconNomadeInterieur} alt="Intérieur cosy du Cocon Nomade au coucher du soleil" loading="lazy" className="h-full w-full object-cover" />
             </div>
           </div>
 
