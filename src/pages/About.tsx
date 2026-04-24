@@ -8,7 +8,7 @@ const About = () => {
     <>
       <Seo
         title="À propos — artisan ébéniste aménageur de vans à Annecy | Signature Van"
-        description="Signature Van, c'est l'histoire d'une reconversion : ancien infirmier devenu ébéniste, installé à Chapeiry près d'Annecy, j'aménage des vans sur mesure."
+        description="Signature Van, c'est l'histoire d'une reconversion : ancien infirmier devenu ébéniste, originaire de Normandie et installé à Chapeiry près d'Annecy, j'aménage des vans pensés pour la vraie vie à bord."
         path="/a-propos"
       />
       <PageHeader
@@ -36,16 +36,22 @@ const About = () => {
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Mon parcours</p>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight">
-                D'infirmier à ébéniste, jusqu'au van.
+                D'infirmier à ébéniste, puis au van.
               </h2>
               <p className="mt-6 text-muted-foreground leading-relaxed">
                 Pendant dix ans, j'ai exercé comme infirmier. Un métier qui m'a appris l'écoute, la précision
-                et l'attention au détail — qualités que je retrouve aujourd'hui, autrement, dans le travail du bois.
+                et l'attention au détail — des qualités que je mets aujourd'hui au service du travail du bois
+                et de l'aménagement de vans.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                En 2020, j'ai entamé une reconversion en ébénisterie. Formé en menuiserie traditionnelle,
-                j'ai très vite rencontré un univers qui rassemblait tout ce que j'aime : l'artisanat, la nature,
-                la montagne. L'aménagement de vans s'est imposé comme une évidence.
+                En 2022, j'ai entamé une reconversion en ébénisterie et j'ai très vite trouvé un univers
+                qui rassemblait tout ce que j'aime : l'artisanat, la nature et le voyage en van.
+                L'aménagement de vans s'est imposé comme une évidence.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                Je voyage moi-même en van depuis plusieurs années, été comme hiver. Cette expérience
+                personnelle me permet de bien connaître les vrais besoins à bord : circulation, rangements,
+                confort de couchage, isolation, lumières, petits détails qui changent tout au quotidien.
               </p>
             </div>
 
@@ -55,31 +61,58 @@ const About = () => {
                 Du temps, du bois et beaucoup d'écoute.
               </h2>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                Chaque projet commence par un long échange. Comprendre votre van, vos voyages, votre rythme,
-                vos manies. Puis viennent les plans, le choix des essences, des tissus, des laitons.
-                Et enfin la fabrication, dans mon atelier — étape par étape, sans précipitation.
+                Chaque projet commence par un échange. Comprendre votre van, vos voyages, votre rythme
+                de vie et vos envies. Puis viennent les plans, le choix des essences, des tissus,
+                des stratifiés… Et enfin la fabrication, dans mon atelier, étape par étape, sans précipitation.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Je travaille principalement le bois massif (chêne, frêne, noyer, peuplier), avec des finitions
-                à l'huile naturelle. J'aime les matériaux qui vivent, qui se patinent, qui racontent quelque chose
-                après quelques années d'usage.
+                La base de mes meubles est en contreplaqué pour gagner en légèreté. Les faces visibles
+                sont en stratifié pour la résistance au quotidien, et j'apporte des touches de bois massif
+                (chêne, frêne, noyer…), avec des finitions adaptées (vernis pour les plans de travail,
+                protections là où il faut).
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                L'objectif : un aménagement solide, pratique et agréable à vivre, qui reste beau dans le temps.
               </p>
             </div>
 
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Mon ancrage</p>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight">
-                Chapeiry, Annecy, les Alpes.
+                De la Normandie à la Haute-Savoie.
               </h2>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                L'atelier est à Chapeiry, à 15 minutes au sud d'Annecy. C'est ici que je vis, que je cours,
-                que je grimpe et que je pars en van. La montagne et le lac dictent une certaine manière
-                de concevoir les choses : robuste, simple, vraie.
+                Originaire de Normandie, je me suis installé en Haute-Savoie en 2012 et je suis littéralement
+                tombé amoureux de cette région. L'atelier Signature Van est à Chapeiry, à 15 minutes
+                au sud d'Annecy.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Travailler avec moi, c'est aussi profiter de cet ancrage : on se rencontre, on suit le projet
-                ensemble, et on partage une certaine idée du voyage — proche, dépaysant, sans artifice.
+                Je conçois des aménagements pensés pour la vraie vie en van, quels que soient vos projets :
+                road trips en solo avec un vélo dans la soute, voyages en couple, vacances en famille
+                ou usage mixte pro / perso.
               </p>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                L'idée, à chaque fois, est de créer un van :
+              </p>
+              <ul className="mt-3 space-y-2 text-muted-foreground leading-relaxed list-disc pl-5 marker:text-secondary">
+                <li>robuste, qui supporte les années d'usage,</li>
+                <li>simple et efficace, sans gadgets inutiles,</li>
+                <li>
+                  adapté à votre manière de voyager : rangement du matériel (sport, travail, enfants),
+                  circulation à bord, couchage confortable, gestion de l'humidité et de la lumière.
+                </li>
+              </ul>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                Travailler avec moi, c'est :
+              </p>
+              <ul className="mt-3 space-y-2 text-muted-foreground leading-relaxed list-disc pl-5 marker:text-secondary">
+                <li>rencontrer l'artisan qui va s'occuper de votre véhicule,</li>
+                <li>suivre votre projet d'aménagement du premier croquis à la dernière vis,</li>
+                <li>
+                  bénéficier de l'expérience de quelqu'un qui utilise lui-même un van et sait ce que
+                  cela demande au quotidien.
+                </li>
+              </ul>
             </div>
 
             <div className="pt-8 border-t border-border">
