@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { PageHeader } from "@/components/PageHeader";
-import artisan from "@/assets/artisan.jpg";
+import artisan from "@/assets/thomas-portrait.jpg";
 
 const About = () => {
   return (
@@ -23,7 +23,7 @@ const About = () => {
             <div className="aspect-[4/5] overflow-hidden sticky top-28">
               <img
                 src={artisan}
-                alt="Artisan ébéniste aménageur de vans dans son atelier près d'Annecy"
+                alt="Thomas Carneiro, artisan ébéniste aménageur de vans à Chapeiry près d'Annecy"
                 loading="lazy"
                 width={1024}
                 height={1280}

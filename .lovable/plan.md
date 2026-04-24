@@ -1,43 +1,36 @@
-## Modifications du Projet 2 — Renault Trafic (page Réalisations)
+## Remplacement des photos d'artisan par tes vraies photos
 
-Toutes les modifications se font dans `src/pages/Realisations.tsx`, dans l'objet `trafic`.
+Tu as fourni 3 photos noir et blanc authentiques. Je propose de les utiliser à 3 endroits cohérents du site (et pas seulement la page À propos), pour remplacer les images IA actuelles partout où l'on voit « l'artisan ».
 
-### 1. `highlights` (encart à droite du hero)
-- Remplacer `"Banquettes en U — couchage 2 places dépliable"` par `"Banquettes face à face — couchage 2 places dépliable"`.
+### 1. Copier les 3 photos dans le projet
 
-### 2. `story` (paragraphe narratif central)
-Réécriture du 2ᵉ paragraphe :
-- Remplacer `"banquettes en U autour d'une table centrale"` par `"banquettes face à face autour d'une table centrale"`.
-- Supprimer la phrase `"permet de cuisiner réellement — pas seulement de réchauffer."`.
-- Ajouter à la place : `"Cette cuisine s'utilise indifféremment portes fermées ou grand ouvertes face à la nature."`.
+Copier les fichiers depuis `user-uploads://` vers `src/assets/` avec des noms propres :
 
-Réécriture du 3ᵉ paragraphe pour intégrer les nouvelles infos matériaux :
-- Préciser que **l'isolation a été réalisée avec de l'Armaflex**.
-- Préciser que le **stratifié est ultra-mat et anti-traces de doigts**.
+- `user-uploads://portrait_aménageur_de_van_carneiro_thomas.JPG` → `src/assets/thomas-portrait.jpg`
+  (le portrait souriant devant le mur en bois — chaleureux, parfait pour la page À propos)
+- `user-uploads://portrait_aménageur_de_van_annecy.JPG` → `src/assets/thomas-atelier.jpg`
+  (toi en train de raboter, atmosphérique — parfait pour la section « Notre atelier » de la home)
+- `user-uploads://IMG_6013.JPG` → `src/assets/copeaux-rabot.jpg`
+  (gros plan copeaux — parfait pour la page Services qui parle du savoir-faire)
 
-### 3. `specs` (fiche technique)
+### 2. Remplacer les images dans 3 fichiers
 
-**Isolation** — remplacer la valeur par :
-> `"Isolation thermique et acoustique en Armaflex, parois habillées."`
+**`src/pages/About.tsx`** (page À propos)
+- Remplacer `artisan.jpg` par `thomas-portrait.jpg` (le portrait souriant) : c'est ta photo, on te voit toi.
+- Mettre à jour l'attribut `alt` : « Thomas Carneiro, artisan ébéniste aménageur de vans à Chapeiry près d'Annecy ».
 
-**Menuiserie** — remplacer par :
-> `"Contreplaqué + stratifié vert sauge ultra-mat anti-traces de doigts, chants soignés, plan de travail bois clair."`
+**`src/components/sections/SavoirFaire.tsx`** (section « Notre atelier » sur la page d'accueil)
+- Remplacer `craft-detail.jpg` par `thomas-atelier.jpg` (toi en train de raboter).
+- Mettre à jour l'`alt` : « Thomas au rabot dans son atelier d'aménagement de vans ».
 
-**Couchage** — remplacer `"Banquettes en U convertibles"` par `"Banquettes face à face convertibles"` (le reste de la phrase est conservé).
+**`src/pages/Services.tsx`** (page Services)
+- Remplacer `craft-detail.jpg` par `copeaux-rabot.jpg` (gros plan copeaux de bois) : ça illustre parfaitement le savoir-faire artisanal.
+- Mettre à jour l'`alt` : « Détail d'un rabot et copeaux de bois — savoir-faire d'ébéniste ».
 
-**Cuisine** — remplacer la valeur par :
-> `"Évier inox encastré, robinet à contacteur, pompe immergée, jerrican eau propre 3×12 L, jerrican eaux usées 12 L, plan de travail bois, rangements optimisés sous plan."`
+### 3. Conserver les anciennes images
+On garde `artisan.jpg` et `craft-detail.jpg` dans `src/assets/` pour ne rien casser, mais elles ne seront plus référencées. Tu pourras les supprimer plus tard si tu veux.
 
-### 4. JSON-LD (SEO)
-Mettre à jour la `description` du Trafic : remplacer `"banquettes en U convertibles"` par `"banquettes face à face convertibles"` pour rester cohérent.
+### Note sur le rendu noir et blanc
+Tes photos sont déjà en noir et blanc — elles s'intègrent très bien avec l'esthétique sobre du site (palette terreuse + serif éditoriale). Aucun filtre CSS supplémentaire à appliquer.
 
----
-
-### Récap des changements
-- Concept salon : « banquettes en U » → « banquettes face à face » (highlights, story, specs Couchage, JSON-LD).
-- Story : suppression phrase « cuisiner réellement », ajout phrase « portes fermées ou grand ouvertes », mention Armaflex + stratifié ultra-mat anti-traces.
-- Specs Isolation : Armaflex.
-- Specs Menuiserie : stratifié ultra-mat anti-traces de doigts.
-- Specs Cuisine : robinet à contacteur, pompe immergée, jerrican propre 3×12 L, jerrican usées 12 L.
-
-Aucune modification d'image, de structure ni de style — uniquement du contenu textuel.
+Aucun changement de structure, de mise en page ni de styles — uniquement le remplacement des fichiers d'image et de leurs `alt`.
