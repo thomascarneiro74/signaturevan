@@ -14,7 +14,7 @@ const About = () => {
       <PageHeader
         eyebrow="À propos"
         title={<>À propos de <em className="italic">Signature Van</em>.</>}
-        intro="Une histoire de reconversion, de bois et de montagne — racontée depuis l'atelier de Chapeiry."
+        intro="Une histoire de reconversion, de bois et de voyage — racontée depuis l'atelier de Chapeiry."
       />
 
       <section className="py-20 md:py-28 bg-background">
