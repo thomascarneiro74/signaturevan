@@ -24,6 +24,8 @@ export const Footer = () => {
           <p className="text-xs uppercase tracking-[0.25em] text-cream/40 mb-2">Site</p>
           <Link to="/" className="hover:text-cream transition-colors">Accueil</Link>
           <Link to="/services" className="hover:text-cream transition-colors">Services</Link>
+          <Link to="/formule-confort" className="hover:text-cream transition-colors">Formule Confort</Link>
+          <Link to="/formule-liberte" className="hover:text-cream transition-colors">Formule Liberté</Link>
           <Link to="/location-van-annecy" className="hover:text-cream transition-colors">Location de van</Link>
           <Link to="/realisations" className="hover:text-cream transition-colors">Réalisations</Link>
           <Link to="/a-propos" className="hover:text-cream transition-colors">À propos</Link>
