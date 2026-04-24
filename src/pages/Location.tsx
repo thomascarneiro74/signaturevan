@@ -44,64 +44,64 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import vanAnnecy from "@/assets/van-annecy.jpg";
-import vanExterior from "@/assets/van-exterior.jpg";
-import vanKitchen from "@/assets/van-kitchen.jpg";
-import vanBedroom from "@/assets/van-bedroom.jpg";
+import coconNomadeInterieur from "@/assets/cocon-nomade-interieur.jpg";
+import echappeeBelleInterieur from "@/assets/echappee-belle-interieur.jpg";
 
 const fleet = [
   {
     name: "Le Cocon Nomade",
     vehicle: "Fiat Talento aménagé",
-    tag: "Escapades à deux",
-    image: vanKitchen,
-    alt: "Cuisine intérieure du van Le Cocon Nomade aménagé par Signature Van",
+    tag: "Escapades en duo ou en famille",
+    image: coconNomadeInterieur,
+    alt: "Intérieur du van Cocon Nomade au coucher du soleil — coin repas et cuisine",
     summary:
       "Un van compact, chaleureux et facile à prendre en main pour les week-ends impro, les lacs alpins et les premières virées vanlife.",
     specs: [
       "2 adultes + 1 enfant max. 10 ans",
       "Lit principal 140 × 200 + couchage cabine enfant",
-      "Cuisine équipée, glacière compression, vaisselle complète",
-      "Hauteur 1,96 m · permis B · dépassement 0,15 €/km",
+      "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, ballon eau chaude, robinet douchette extensible, réchaud amovible double feux",
+      "Hauteur 2,06 m · permis B · dépassement 0,15 €/km",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
       { label: "Énergie", value: "Diesel" },
-      { label: "Autonomie", value: "Élec 12V + spots LED" },
+      { label: "Autonomie", value: "Recharge en roulant + panneau solaire · prises USB et 12V" },
       { label: "Esprit", value: "Petit cocon prêt à partir" },
     ],
   },
   {
     name: "L'Échappée Belle",
     vehicle: "Renault Trafic L2H1 — 2019",
-    tag: "Petite famille outdoor",
-    image: vanExterior,
-    alt: "Vue extérieure du van L'Échappée Belle au départ d'Annecy",
+    tag: "",
+    image: echappeeBelleInterieur,
+    alt: "Intérieur de L'Échappée Belle — meuble cuisine et porte latérale ouverte sur prairie et montagnes",
     summary:
       "Le van signature pour partir léger avec un vrai confort à bord : salon accueillant, lit principal généreux et couchage cabine enfant.",
     specs: [
       "3 places route · 2 adultes + 1 enfant",
-      "Lit arrière 140 × 200 + lit cabine 60/70 × 140",
-      "Réservoir eau, douchette, rangements et coin repas",
+      "Lit arrière 140 × 200 + lit cabine 60 × 140",
+      "Réserve d'eau par jerricans : 36 L eau propre + 12 L eaux usées · 1 feu gaz amovible · vaisselle complète",
       "Hauteur env. 2,10 m · caution 2 000 € · permis B",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
       { label: "Énergie", value: "Diesel" },
-      { label: "Autonomie", value: "Panneau solaire + batterie AGM" },
+      { label: "Autonomie", value: "Batterie auxiliaire rechargée en roulant · prises USB et 12V" },
       { label: "Usage", value: "Road trips Annecy & Alpes" },
     ],
   },
 ] as const;
 
 const seasons = [
-  { name: "Basse saison", price: "55 €", period: "hors vacances et grands ponts" },
-  { name: "Moyenne saison", price: "72 €", period: "printemps, automne, ponts" },
-  { name: "Haute saison", price: "94 €", period: "été et périodes très demandées" },
+  { name: "Basse saison", price: "55 €", period: "de novembre à mars", minNights: "2 nuits min." },
+  { name: "Moyenne saison", price: "72 €", period: "avril, mai, juin, septembre, octobre", minNights: "2 nuits min." },
+  { name: "Haute saison", price: "94 €", period: "juillet - août", minNights: "5 nuits min." },
 ] as const;
 
 const included = [
   "Assurance multirisques et assistance 24h/24",
   "Vaisselle, batterie de cuisine, cafetière et consommables de base",
+  "Couette et oreillers fournis pour chaque couchage",
   "Prise en main complète avant départ depuis Chapeiry / Annecy",
   "Éclairage LED, prises USB, rangements et table de repas",
   "Conseils d'itinéraires lacs, montagnes et spots nuit autour des Alpes",
