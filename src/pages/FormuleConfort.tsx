@@ -15,12 +15,12 @@ const inclus = [
   {
     icon: Sofa,
     label: "Salon convertible",
-    value: "Banquettes en U autour d'une table centrale, conversion en couchage 2 places le soir — sans démontage d'outil.",
+    value: "Deux banquettes face à face autour d'une table centrale, conversion en couchage 2 places le soir — sans démontage d'outil.",
   },
   {
     icon: Bed,
     label: "Couchage 2 places",
-    value: "Système « peigne » dépliable, mousse haute densité, housses velours côtelé déhoussables.",
+    value: "Système « peigne » dépliable, assises Bultex et housses tissu au choix déhoussables.",
   },
   {
     icon: ChefHat,
@@ -56,7 +56,7 @@ const offerJsonLd = {
   "@type": "Product",
   name: "Formule Confort — Aménagement van Renault Trafic / Vivaro / Talento",
   description:
-    "Formule d'aménagement complète Signature Van pour vans L2H1 : banquettes en U convertibles, cuisine inox, électricité 12V, mobilier stratifié vert sauge.",
+    "Formule d'aménagement complète Signature Van pour vans L2H1 : deux banquettes face à face convertibles, cuisine inox, électricité 12V, mobilier en contreplaqué stratifié.",
   brand: { "@type": "Brand", name: "Signature Van" },
   image: "https://signaturevan.fr/og-image.jpg",
   offers: {
@@ -74,7 +74,7 @@ const FormuleConfort = () => {
     <>
       <Seo
         title="Formule Confort — Aménagement van à 11 900 € | Signature Van Annecy"
-        description="Formule Confort : aménagement complet de van L2H1 (Renault Trafic, Vivaro, Talento) à 11 900 €. Banquettes en U convertibles, cuisine inox, électricité 12V. Atelier à Annecy."
+        description="Formule Confort : aménagement complet de van L2H1 (Renault Trafic, Vivaro, Talento) à 11 900 €. Deux banquettes face à face, cuisine inox, électricité 12V. Atelier à Annecy."
         path="/formule-confort"
         jsonLd={offerJsonLd}
       />
@@ -138,7 +138,7 @@ const FormuleConfort = () => {
             </figure>
             <figure className="md:col-span-4 overflow-hidden bg-muted">
               <div className="aspect-[3/4]">
-                <img src={traficVelours} alt="Détail velours côtelé vert sauge — Formule Confort" loading="lazy" className="h-full w-full object-cover" />
+                <img src={traficVelours} alt="Détail assise et housse tissu — Formule Confort" loading="lazy" className="h-full w-full object-cover" />
               </div>
             </figure>
             <figure className="md:col-span-4 overflow-hidden bg-muted">

@@ -235,7 +235,7 @@ const Location = () => {
       values.message,
     ].join("\n");
 
-    window.location.href = `mailto:contact@signaturevan.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:signature.van@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     toast.success("Votre demande est prête à être envoyée.");
     form.reset();
     setSending(false);

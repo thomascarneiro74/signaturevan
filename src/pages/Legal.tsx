@@ -18,8 +18,8 @@ export const MentionsLegales = () => (
               Signature Van — Entreprise individuelle<br />
               Atelier&nbsp;: 74540 Chapeiry, Haute-Savoie<br />
               SIRET&nbsp;: 000 000 000 00000<br />
-              Email&nbsp;: contact@signaturevan.fr<br />
-              Téléphone&nbsp;: +33 6 00 00 00 00<br />
+              Email&nbsp;: signature.van@gmail.com<br />
+              Téléphone&nbsp;: +33 7 60 42 18 04<br />
               Directeur de la publication&nbsp;: [Prénom Nom]
             </p>
           </div>
@@ -96,7 +96,7 @@ export const Confidentialite = () => (
             <p>
               Vous disposez d'un droit d'accès, de rectification, de portabilité et de suppression de vos
               données. Pour les exercer, écrivez-nous à&nbsp;
-              <a href="mailto:contact@signaturevan.fr" className="underline">contact@signaturevan.fr</a>.
+              <a href="mailto:signature.van@gmail.com" className="underline">signature.van@gmail.com</a>.
             </p>
           </div>
         </article>

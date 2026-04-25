@@ -20,12 +20,12 @@ const formules = [
     priceNote: "TTC, hors véhicule",
     tagline: "L'essentiel, parfaitement exécuté.",
     description:
-      "Un aménagement complet et prêt à partir, fondé sur un agencement éprouvé : banquettes en U convertibles, cuisine inox, électricité 12V, finitions soignées.",
+      "Un aménagement complet et prêt à partir, fondé sur un agencement éprouvé : deux banquettes face à face convertibles, cuisine inox, électricité 12V, finitions soignées.",
     features: [
-      "Banquettes en U + couchage 2 places",
+      "2 banquettes face à face + couchage 2 places",
       "Cuisine inox & plan de travail bois",
       "Électricité 12V intégrée (USB, LED)",
-      "Mobilier stratifié & velours côtelé",
+      "Mobilier en contreplaqué stratifié & assises Bultex avec housse tissu au choix",
       "Compatible Renault Trafic, Vivaro, Talento L2H1",
     ],
     image: traficSalon,
@@ -57,7 +57,7 @@ const formules = [
 const aLaCarte = [
   { t: "Isolation liège & phonique", d: "Liège projeté écologique, isolation thermique et acoustique, traitement de la condensation pour vivre confortablement été comme hiver." },
   { t: "Électricité 12V / 230V", d: "Batteries lithium, panneaux solaires, convertisseur, prises USB et 220V, éclairage LED basse conso, tableau électrique sécurisé." },
-  { t: "Mobilier bois sur mesure", d: "Cuisine, banquettes, lits coulissants, dressings — en chêne, frêne ou peuplier massif, finitions huile naturelle." },
+  { t: "Mobilier bois sur mesure", d: "Cuisine, banquettes, lits coulissants, dressings — mobilier en contreplaqué, stratifié ou habillage bois selon le projet." },
   { t: "Ouvertures & lumière", d: "Pose de baies vitrées, lanterneaux, hublots latéraux : plus de luminosité, plus d'air, plus de vues." },
   { t: "Optimisation des rangements", d: "Tiroirs sous-banquettes, soutes garages, fixations matos outdoor (skis, vélos, trail) — chaque cm² compte." },
   { t: "Chauffage & autonomie", d: "Chauffage stationnaire diesel, eau chaude, douche extérieure, gestion d'eau propre/grise — pour vivre toute l'année." },
@@ -117,9 +117,9 @@ const Services = () => {
 
             <div className="mt-12 p-8 bg-muted/60 border-l-2 border-sage">
               <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Fourchette indicative</p>
-              <p className="mt-3 font-serif text-3xl">À partir de 18 000 € — jusqu'à 45 000 €</p>
+              <p className="mt-3 font-serif text-3xl">À partir de 11 900 € — ensuite, à vous de choisir</p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Selon le véhicule, le niveau d'équipement et les finitions. Devis détaillé gratuit après notre premier échange.
+                Selon vos envies, votre véhicule et le niveau d'équipement souhaité. Devis détaillé gratuit après notre premier échange.
               </p>
             </div>
           </div>

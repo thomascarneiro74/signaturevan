@@ -19,8 +19,8 @@ export const Footer = () => {
           <address className="mt-6 not-italic text-sm text-cream/70 space-y-1">
             <p>Atelier Signature Van</p>
             <p>74540 Chapeiry, Haute-Savoie</p>
-            <p>contact@signaturevan.fr</p>
-            <p>+33 6 00 00 00 00</p>
+            <p>signature.van@gmail.com</p>
+            <p>+33 7 60 42 18 04</p>
           </address>
         </div>
 
@@ -38,8 +38,7 @@ export const Footer = () => {
 
         <div className="md:col-span-3 flex flex-col gap-3 text-sm">
           <p className="text-xs uppercase tracking-[0.25em] text-cream/40 mb-2">Suivez-nous</p>
-          <a href="#" className="hover:text-cream transition-colors">Instagram</a>
-          <a href="#" className="hover:text-cream transition-colors">Pinterest</a>
+          <a href="https://www.instagram.com/signature.van" className="hover:text-cream transition-colors" target="_blank" rel="noreferrer">@signature.van</a>
           <p className="text-xs uppercase tracking-[0.25em] text-cream/40 mb-2 mt-6">Légal</p>
           <Link to="/mentions-legales" className="hover:text-cream transition-colors">Mentions légales</Link>
           <Link to="/confidentialite" className="hover:text-cream transition-colors">Confidentialité</Link>
