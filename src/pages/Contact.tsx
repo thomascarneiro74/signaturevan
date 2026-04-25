@@ -3,7 +3,7 @@ import { Seo } from "@/components/Seo";
 import { PageHeader } from "@/components/PageHeader";
 import { toast } from "sonner";
 
-type ProjectType = "amenagement" | "location" | "cse" | "autre";
+type ProjectType = "amenagement" | "location" | "autre";
 
 const Contact = () => {
   const [type, setType] = useState<ProjectType>("amenagement");
@@ -23,13 +23,13 @@ const Contact = () => {
     <>
       <Seo
         title="Contact — Aménagement et location de van à Annecy | Signature Van"
-        description="Contactez Signature Van à Chapeiry (Annecy, Haute-Savoie) pour un aménagement sur mesure, une location de van ou un partenariat CSE. Réponse sous 48h."
+        description="Contactez Signature Van à Chapeiry (Annecy, Haute-Savoie) pour un aménagement sur mesure ou une location de van. Réponse sous 48h."
         path="/contact"
       />
       <PageHeader
         eyebrow="Contact"
         title={<>Contactez <em className="italic">Signature Van</em>.</>}
-        intro="Aménagement, location ou partenariat CSE — décrivez votre projet en quelques mots, on revient vers vous sous 48 heures. Premier échange toujours sans engagement."
+        intro="Aménagement ou location — décrivez votre projet en quelques mots, on revient vers vous sous 48 heures. Premier échange toujours sans engagement."
       />
 
       <section className="py-20 md:py-28 bg-background">
@@ -46,23 +46,16 @@ const Contact = () => {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">Email</p>
-                <a href="mailto:contact@signaturevan.fr" className="text-foreground text-base hover:text-sage transition-colors">
-                  contact@signaturevan.fr
+                <a href="mailto:signature.van@gmail.com" className="text-foreground text-base hover:text-sage transition-colors">
+                  signature.van@gmail.com
                 </a>
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">Téléphone</p>
-                <a href="tel:+33600000000" className="text-foreground text-base hover:text-sage transition-colors">
-                  +33 6 00 00 00 00
+                <a href="tel:+33760421804" className="text-foreground text-base hover:text-sage transition-colors">
+                  +33 7 60 42 18 04
                 </a>
                 <p className="mt-1 text-xs text-muted-foreground">Du lundi au vendredi, 9h–18h</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">Contact CSE</p>
-                <a href="mailto:cse@signaturevan.fr" className="text-foreground text-base hover:text-sage transition-colors">
-                  cse@signaturevan.fr
-                </a>
-                <p className="mt-1 text-xs text-muted-foreground">Pour les responsables comité d'entreprise</p>
               </div>
             </div>
 
@@ -112,7 +105,6 @@ const Contact = () => {
                 {([
                   { v: "amenagement", l: "Aménagement" },
                   { v: "location", l: "Location" },
-                  { v: "cse", l: "Partenariat CSE" },
                   { v: "autre", l: "Autre" },
                 ] as { v: ProjectType; l: string }[]).map((opt) => (
                   <label key={opt.v} className={`cursor-pointer text-center text-sm py-3 border transition-colors ${
@@ -140,7 +132,7 @@ const Contact = () => {
               </label>
               <textarea id="msg" name="message" rows={5} required
                 className="w-full bg-transparent outline-none resize-none text-foreground"
-                placeholder="Véhicule, usages prévus, dates de location, taille de l'entreprise pour un partenariat CSE…"
+                placeholder="Véhicule, usages prévus, dates souhaitées, besoins particuliers…"
               />
             </div>
 

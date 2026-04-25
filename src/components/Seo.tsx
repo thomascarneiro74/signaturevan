@@ -50,8 +50,8 @@ export const localBusinessJsonLd = {
   description:
     "Artisan aménageur de vans sur mesure et location de van aménagé à Annecy (Haute-Savoie).",
   url: SITE_URL,
-  telephone: "+33 6 00 00 00 00",
-  email: "contact@signaturevan.fr",
+  telephone: "+33 7 60 42 18 04",
+  email: "signature.van@gmail.com",
   logo: `${SITE_URL}/og-image.png`,
   address: {
     "@type": "PostalAddress",

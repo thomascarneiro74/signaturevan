@@ -68,12 +68,12 @@ const trafic = {
   highlights: [
     "Banquettes face à face — couchage 2 places dépliable",
     "Cuisine inox + plan de travail bois",
-    "Velours côtelé vert sauge & stratifié assorti",
+    "Assises Bultex avec housse tissu au choix & stratifié assorti",
   ],
   story: [
     "Sur ce Renault Trafic L2H1 de 2019, nous avons appliqué notre Formule Confort : un aménagement complet, prêt à partir, fondé sur un agencement éprouvé et des matériaux choisis pour durer.",
     "Le parti pris : un grand salon convivial avec banquettes face à face autour d'une table centrale, qui se transforme en couchage 2 places le soir venu. À l'avant du module, une cuisine compacte avec évier inox encastré, plan de travail bois et rangements optimisés. Cette cuisine s'utilise indifféremment portes fermées ou grand ouvertes face à la nature.",
-    "Le velours côtelé vert sauge des assises répond au stratifié ultra-mat anti-traces de doigts des meubles dans un camaïeu doux et naturel. L'isolation, réalisée en Armaflex, garantit confort thermique et acoustique. Côté technique, tableau électrique soigné, prises USB et 12V intégrées, éclairage LED basse consommation : tout fonctionne, tout se voit, rien ne dépasse.",
+    "Les assises Bultex avec housses tissu au choix répondent au stratifié ultra-mat anti-traces de doigts des meubles dans un camaïeu doux et naturel. L'isolation, réalisée en Armaflex, garantit confort thermique et acoustique. Côté technique, tableau électrique soigné, prises USB et 12V intégrées, éclairage LED basse consommation : tout fonctionne, tout se voit, rien ne dépasse.",
   ],
   gallery: [
     { src: traficSalon, alt: "Salon Renault Trafic L2H1 avec banquettes velours vert sauge et table centrale — Formule Confort Signature Van", span: "md:col-span-8 md:row-span-2", ratio: "aspect-[4/3]" },
@@ -87,7 +87,7 @@ const trafic = {
   specs: [
     { icon: Snowflake, label: "Isolation", value: "Isolation thermique et acoustique en Armaflex, parois habillées." },
     { icon: Hammer, label: "Menuiserie", value: "Contreplaqué + stratifié vert sauge ultra-mat anti-traces de doigts, chants soignés, plan de travail bois clair." },
-    { icon: Bed, label: "Couchage", value: "Banquettes face à face convertibles — couchage 2 places dépliable « en peigne » avec coussins velours côtelé." },
+    { icon: Bed, label: "Couchage", value: "Banquettes face à face convertibles — couchage 2 places dépliable « en peigne » avec assises Bultex et housses tissu au choix." },
     { icon: Zap, label: "Électricité", value: "Tableau électrique intégré, batterie auxiliaire, prises 12V & USB, éclairage LED basse conso." },
     { icon: Droplet, label: "Cuisine", value: "Évier inox encastré, robinet à contacteur, pompe immergée, jerrican eau propre 3×12 L, jerrican eaux usées 12 L, plan de travail bois, rangements optimisés sous plan." },
     { icon: Move, label: "Modularité", value: "Configuration salon le jour, couchage la nuit — transformation rapide sans démontage d'outil." },
