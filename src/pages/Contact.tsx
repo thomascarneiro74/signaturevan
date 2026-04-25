@@ -101,7 +101,7 @@ const Contact = () => {
               <legend className="block text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
                 Type de projet *
               </legend>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {([
                   { v: "amenagement", l: "Aménagement" },
                   { v: "location", l: "Location" },
