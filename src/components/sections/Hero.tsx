@@ -24,8 +24,8 @@ export const Hero = () => {
             Aménagement et location de vans <em className="italic font-serif">sur mesure</em> à Annecy.
           </h1>
           <p className="text-cream/85 text-lg md:text-xl mt-8 max-w-xl font-light leading-relaxed">
-            Aménagement de vans sur mesure, légers, durables et fabriqués à la main près d’Annecy,
-            avec des matériaux de qualité, si possible locaux.
+            Aménagement de vans sur mesure, légers et durables, fabriqués à la main près d’Annecy
+            avec des matériaux choisis, privilégiant le local quand c’est possible.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
