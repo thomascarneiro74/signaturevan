@@ -1,8 +1,8 @@
-Je vais modifier le texte principal de la toute première page, dans le bloc d’accueil, pour remplacer le paragraphe actuel par :
+Je vais remplacer le texte actuel de la page de garde par exactement cette nouvelle formulation :
 
-"Aménagement de vans sur mesure, légers, durables et fabriqués à la main près d’Annecy, avec des matériaux de qualité, si possible locaux."
+"Aménagement de vans sur mesure, légers et durables, fabriqués à la main près d’Annecy avec des matériaux choisis, privilégiant le local quand c’est possible."
 
 Détail technique :
 - Fichier concerné : `src/components/sections/Hero.tsx`
-- Je corrigerai aussi les petites fautes de formulation : `matérieux` → `matériaux`, et `local` → `locaux` pour s’accorder avec matériaux.
-- Le reste de la mise en page restera inchangé.
+- Seul le paragraphe d’introduction sera modifié.
+- La mise en page et les boutons resteront inchangés.
