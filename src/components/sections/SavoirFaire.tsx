@@ -33,9 +33,9 @@ export const SavoirFaire = () => {
 
           <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-10">
             {[
-              { v: "150+", l: "vans aménagés" },
-              { v: "8 sem.", l: "de fabrication" },
-              { v: "10 ans", l: "de garantie" },
+              { v: "5", l: "vans aménagés" },
+              { v: "5 semaines", l: "de fabrication" },
+              { v: "5 ans", l: "de garantie" },
             ].map((s) => (
               <div key={s.l}>
                 <dt className="font-serif text-3xl md:text-4xl text-foreground">
