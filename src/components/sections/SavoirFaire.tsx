@@ -26,9 +26,8 @@ export const SavoirFaire = () => {
             pensé pour la route.
           </h2>
           <p className="mt-8 text-muted-foreground text-lg leading-relaxed max-w-lg">
-            Chaque van est conçu dans notre atelier en France, à partir
-            de bois massif sélectionné, de tissus naturels et de finitions
-            laiton. Un travail à la main, à votre échelle.
+            Nos bois sont sélectionnés auprès de filières responsables,
+            avec des essences certifiées et autant que possible locales.
           </p>
 
           <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-10">
