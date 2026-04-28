@@ -25,7 +25,7 @@ const offers = [
   },
   {
     title: "Location de van aménagé",
-    desc: "Partez depuis Annecy avec un van prêt à vivre. Idéal pour les week-ends outdoor, vacances et offres CSE.",
+    desc: "Partez depuis Annecy avec un van prêt à vivre. Idéal pour les week-ends outdoor, les vacances et les micro-aventures alpines.",
     to: "/location-van-annecy",
     img: locationFiatSunset,
     alt: "Fiat blanc aménagé en location au coucher du soleil en extérieur",
@@ -60,7 +60,7 @@ const Index = () => {
     <>
       <Seo
         title="Aménagement et location de vans sur mesure à Annecy | Signature Van"
-        description="Artisan aménageur de vans à Annecy (Haute-Savoie). Aménagement sur mesure, prestations à la carte et location de van aménagé pour particuliers et CSE."
+        description="Artisan aménageur de vans à Annecy (Haute-Savoie). Aménagement sur mesure, prestations à la carte et location de van aménagé pour partir dans les Alpes."
         path="/"
         jsonLd={localBusinessJsonLd}
       />
