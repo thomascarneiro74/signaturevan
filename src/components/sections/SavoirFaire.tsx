@@ -30,9 +30,8 @@ export const SavoirFaire = () => {
             avec des essences certifiées et autant que possible locales.
           </p>
 
-          <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-10">
+          <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-border pt-10 max-w-md">
             {[
-              { v: "5", l: "vans aménagés" },
               { v: "5 semaines", l: "de fabrication" },
               { v: "5 ans", l: "de garantie" },
             ].map((s) => (
