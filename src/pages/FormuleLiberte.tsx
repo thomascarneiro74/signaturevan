@@ -20,7 +20,7 @@ const FormuleLiberte = () => {
     <>
       <Seo
         title="Formule Liberté — Aménagement van autonome | Signature Van Annecy"
-        description="Formule Liberté : aménagement van complet pensé pour l'autonomie longue durée. Solaire, lithium, chauffage, douche. À partir de 19 900 €. Atelier à Annecy, Haute-Savoie."
+        description="Formule Liberté : aménagement van complet pensé pour l'autonomie longue durée. Solaire, lithium, chauffage, douche. Sur devis. Atelier à Annecy, Haute-Savoie."
         path="/formule-liberte"
       />
       <PageHeader
@@ -46,9 +46,9 @@ const FormuleLiberte = () => {
             </div>
             <div className="md:col-span-5">
               <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Tarif Formule Liberté</p>
-              <p className="font-serif text-5xl md:text-6xl leading-none">À partir de 19 900 €</p>
+              <p className="font-serif text-5xl md:text-6xl leading-none">Sur devis</p>
               <p className="mt-3 text-sm text-muted-foreground">
-                TTC, hors véhicule. Devis personnalisé selon le niveau d'autonomie souhaité.
+                Devis personnalisé selon le véhicule, le niveau d'autonomie souhaité et les équipements choisis.
               </p>
 
               <div className="mt-10 pt-10 border-t border-border">
