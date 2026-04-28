@@ -1,18 +1,12 @@
 Plan de modification
 
-1. Page d’accueil, section « Notre atelier »
-- Retirer complètement l’indicateur « 5 vans aménagés ».
-- Conserver uniquement :
-  - « 5 semaines / de fabrication »
-  - « 5 ans / de garantie »
-- Adapter la grille de statistiques pour qu’elle affiche proprement 2 blocs au lieu de 3.
+1. Page d’accueil, section « Pourquoi nous choisir »
+- Remplacer le texte actuel :
+  « Rangements pour le matos de ski, vélo, trail. Un van qui s'adapte à votre pratique, pas l'inverse. »
+- Par une formulation moins orientée sport de montagne, qui inclut mieux les couples et les familles.
 
-2. Bloc « Location de van aménagé »
-- Ajouter l’image fournie en pièce jointe dans les assets du projet.
-- Remplacer l’image actuellement utilisée pour la carte « Location de van aménagé » sur la page d’accueil par cette nouvelle photo.
-- Mettre à jour le texte alternatif pour décrire correctement la photo : van Fiat blanc au coucher du soleil, en extérieur.
+Texte proposé :
+« Des rangements et un aménagement pensés pour les escapades en couple ou en famille. Un van qui s’adapte à votre façon de voyager, pas l’inverse. »
 
-Détails techniques
-- Fichier concerné pour « Notre atelier » : `src/components/sections/SavoirFaire.tsx`.
-- Fichier concerné pour la carte de location en page d’accueil : `src/pages/Index.tsx`.
-- Image fournie à copier depuis `user-uploads://IMG_5858.JPG` vers `src/assets/`, puis importée dans React comme les autres images du site.
+Détail technique
+- Fichier concerné : `src/pages/Index.tsx`, dans le bloc `reasons`, élément « Pensé pour la vraie vie ».
