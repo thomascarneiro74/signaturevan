@@ -46,7 +46,7 @@ const reasons = [
   {
     n: "03",
     title: "Pensé pour la vraie vie",
-    desc: "Rangements pour le matos de ski, vélo, trail. Un van qui s'adapte à votre pratique, pas l'inverse.",
+    desc: "Des rangements et un aménagement pensés pour les escapades en couple ou en famille. Un van qui s’adapte à votre façon de voyager, pas l’inverse.",
   },
   {
     n: "04",
