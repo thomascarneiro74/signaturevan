@@ -18,7 +18,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import vanAnnecy from "@/assets/van-annecy.jpg";
+import locationVanPrairie from "@/assets/location-van-prairie.png";
 import coconNomadeInterieur from "@/assets/cocon-nomade-interieur.jpg";
 import echappeeBelleInterieur from "@/assets/echappee-belle-interieur.jpg";
 
@@ -189,7 +189,7 @@ const Location = () => {
           <div className="md:col-span-7 overflow-hidden bg-muted">
             <div className="aspect-[16/10]">
               <img
-                src={vanAnnecy}
+                src={locationVanPrairie}
                 alt="Van aménagé Signature Van au départ d'Annecy face aux montagnes"
                 loading="lazy"
                 className="h-full w-full object-cover"
