@@ -55,7 +55,7 @@ const formules = [
 ];
 
 const aLaCarte = [
-  { t: "Isolation liège & phonique", d: "Liège projeté écologique, isolation thermique et acoustique, traitement de la condensation pour vivre confortablement été comme hiver." },
+  { t: "Isolation liège & phonique", price: "À partir de 990 €", d: "Liège projeté écologique, isolation thermique et acoustique, traitement de la condensation pour vivre confortablement été comme hiver." },
   { t: "Électricité 12V / 230V", d: "Batteries lithium, panneaux solaires, convertisseur, prises USB et 220V, éclairage LED basse conso, tableau électrique sécurisé." },
   { t: "Mobilier bois sur mesure", d: "Cuisine, banquettes, lits coulissants, dressings — mobilier en contreplaqué, stratifié ou habillage bois selon le projet." },
   { t: "Ouvertures & lumière", d: "Pose de baies vitrées, lanterneaux, hublots latéraux : plus de luminosité, plus d'air, plus de vues." },
@@ -204,6 +204,7 @@ const Services = () => {
             {aLaCarte.map((s) => (
               <article key={s.t} className="bg-background p-8 md:p-10">
                 <h3 className="font-serif text-2xl md:text-3xl leading-tight">{s.t}</h3>
+                {s.price ? <p className="mt-3 text-sm uppercase tracking-[0.2em] text-sage">{s.price}</p> : null}
                 <p className="mt-4 text-muted-foreground leading-relaxed">{s.d}</p>
               </article>
             ))}

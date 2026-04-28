@@ -1,8 +1,6 @@
-Je vais remplacer le texte actuel de la page de garde par exactement cette nouvelle formulation :
-
-"Aménagement de vans sur mesure, légers et durables, fabriqués à la main près d’Annecy avec des matériaux choisis, privilégiant le local quand c’est possible."
+Je vais modifier la page Services pour afficher le tarif de la prestation “Isolation liège & phonique” à partir de 990 €.
 
 Détail technique :
-- Fichier concerné : `src/components/sections/Hero.tsx`
-- Seul le paragraphe d’introduction sera modifié.
-- La mise en page et les boutons resteront inchangés.
+- Fichier concerné : `src/pages/Services.tsx`
+- La carte/prestation “Isolation liège & phonique” sera mise à jour avec la mention : `À partir de 990 €`
+- Je conserverai le texte descriptif existant et la mise en page actuelle.
