@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { SavoirFaire } from "@/components/sections/SavoirFaire";
 import { Temoignages } from "@/components/sections/Temoignages";
 import vanAnnecy from "@/assets/van-annecy.jpg";
+import locationFiatSunset from "@/assets/location-fiat-coucher-soleil.jpg";
 import tribuCuisine from "@/assets/realisations/tribu/tribu-cuisine-arriere-frene.jpg";
 import tribuDetail from "@/assets/realisations/tribu/tribu-detail-arrondi-meuble-entree.jpg";
 
@@ -26,8 +27,8 @@ const offers = [
     title: "Location de van aménagé",
     desc: "Partez depuis Annecy avec un van prêt à vivre. Idéal pour les week-ends outdoor, vacances et offres CSE.",
     to: "/location-van-annecy",
-    img: vanAnnecy,
-    alt: "Location de van aménagé au départ d'Annecy avec vue sur le lac",
+    img: locationFiatSunset,
+    alt: "Fiat blanc aménagé en location au coucher du soleil en extérieur",
   },
 ];
 
