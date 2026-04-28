@@ -40,7 +40,7 @@ const fleet = [
       "2 adultes + 1 enfant max. 10 ans",
       "Lit principal 140 × 200 + couchage cabine enfant",
       "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, ballon eau chaude, robinet douchette extensible, réchaud amovible double feux",
-      "Hauteur 2,06 m · permis B · dépassement 0,15 €/km",
+      "Hauteur 2,06 m · permis B",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
@@ -75,9 +75,9 @@ const fleet = [
 ] as const;
 
 const seasons = [
-  { name: "Basse saison", price: "55 €", period: "de novembre à mars", minNights: "2 nuits min." },
-  { name: "Moyenne saison", price: "72 €", period: "avril, mai, juin, septembre, octobre", minNights: "2 nuits min." },
-  { name: "Haute saison", price: "94 €", period: "juillet - août", minNights: "5 nuits min." },
+  { name: "Basse saison", price: "65 €", period: "de novembre à mars", minNights: "2 nuits min." },
+  { name: "Moyenne saison", price: "85 €", period: "avril, mai, juin, septembre, octobre", minNights: "2 nuits min." },
+  { name: "Haute saison", price: "105 €", period: "juillet - août", minNights: "5 nuits min." },
 ] as const;
 
 const included = [
@@ -161,8 +161,8 @@ const productJsonLd = fleet.map((van) => ({
     priceSpecification: {
       "@type": "UnitPriceSpecification",
       priceCurrency: "EUR",
-      minPrice: 55,
-      maxPrice: 94,
+      minPrice: 65,
+      maxPrice: 105,
       unitText: "DAY",
     },
     priceValidUntil: "2026-12-31",
