@@ -56,11 +56,11 @@ const formules = [
 
 const aLaCarte = [
   { t: "Isolation liège & phonique", price: "À partir de 990 €", d: "Liège projeté écologique, isolation thermique et acoustique, traitement de la condensation pour vivre confortablement été comme hiver." },
-  { t: "Électricité 12V / 230V", d: "Batteries lithium, panneaux solaires, convertisseur, prises USB et 220V, éclairage LED basse conso, tableau électrique sécurisé." },
+  { t: "Électricité 12V / 230V", price: "Sur devis", d: "Batteries lithium, panneaux solaires, convertisseur, prises USB et 220V, éclairage LED basse conso, tableau électrique sécurisé." },
   { t: "Mobilier bois sur mesure", d: "Cuisine, banquettes, lits coulissants, dressings — mobilier en contreplaqué, stratifié ou habillage bois selon le projet." },
-  { t: "Ouvertures & lumière", d: "Pose de baies vitrées, lanterneaux, hublots latéraux : plus de luminosité, plus d'air, plus de vues." },
+  { t: "Ouvertures & lumière", price: "À partir de 490 €", d: "Pose de baies vitrées, lanterneaux, hublots latéraux : plus de luminosité, plus d'air, plus de vues." },
   { t: "Optimisation des rangements", d: "Tiroirs sous-banquettes, soutes garages, fixations matos outdoor (skis, vélos, trail) — chaque cm² compte." },
-  { t: "Chauffage & autonomie", d: "Chauffage stationnaire diesel, eau chaude, douche extérieure, gestion d'eau propre/grise — pour vivre toute l'année." },
+  { t: "Chauffage & autonomie", price: "À partir de 1 590 €", d: "Chauffage stationnaire diesel, eau chaude, douche extérieure, gestion d'eau propre/grise — pour vivre toute l'année." },
 ];
 
 const Services = () => {
