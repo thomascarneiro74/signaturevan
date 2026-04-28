@@ -22,15 +22,13 @@ import vanAnnecy from "@/assets/van-annecy.jpg";
 import coconNomadeInterieur from "@/assets/cocon-nomade-interieur.jpg";
 import echappeeBelleInterieur from "@/assets/echappee-belle-interieur.jpg";
 
-const yescapaUrl =
-  "https://www.yescapa.fr/campers/113054?date_from=2026-05-15&date_to=2026-05-18&hour_from=14&hour_to=12";
-
 const fleet = [
   {
     name: "Le Cocon Nomade",
     vehicle: "Fiat Talento aménagé",
     tag: "Escapades en duo ou en famille",
     image: coconNomadeInterieur,
+    yescapaUrl: "https://www.yescapa.fr/campers/113054",
     wikicampersUrl:
       "https://www.wikicampers.fr/location/van/chapeiry/fiat-fiat-talento-1-6-ecojet-125-ch-eu6-3-0t/380559",
     alt: "Intérieur du van Cocon Nomade au coucher du soleil — coin repas et cuisine",
@@ -54,6 +52,7 @@ const fleet = [
     vehicle: "Renault Trafic L2H1 — 2019",
     tag: "",
     image: echappeeBelleInterieur,
+    yescapaUrl: "https://www.yescapa.fr/campers/113298",
     wikicampersUrl:
       "https://www.wikicampers.fr/location/van/chapeiry/fiat-fiat-talento-1-6-multijet-120-ch-eu6-lh1-1200-3-0t/380688",
     alt: "Intérieur de L'Échappée Belle — meuble cuisine et porte latérale ouverte sur prairie et montagnes",
@@ -405,18 +404,21 @@ const Location = () => {
               Pour simplifier l'assurance, la caution et les conditions de location, les réservations passent désormais par Yescapa ou Wikicampers. Vous gardez un cadre clair, des disponibilités en ligne et une prise en main soignée au départ.
             </p>
           </div>
-          <div className="md:col-span-4 flex flex-col gap-4">
-            <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
-              <a href={yescapaUrl} target="_blank" rel="noreferrer">
-                Voir sur Yescapa <ArrowRight />
-              </a>
-            </Button>
+          <div className="md:col-span-4 grid gap-4 sm:grid-cols-2 md:grid-cols-1">
             {fleet.map((van) => (
-              <Button key={van.name} asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
-                <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
-                  {van.name} sur Wikicampers <ArrowRight />
-                </a>
-              </Button>
+              <div key={van.name} className="grid gap-3">
+                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">{van.name}</p>
+                <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
+                  <a href={van.yescapaUrl} target="_blank" rel="noreferrer">
+                    Voir sur Yescapa <ArrowRight />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
+                  <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
+                    Voir sur Wikicampers <ArrowRight />
+                  </a>
+                </Button>
+              </div>
             ))}
           </div>
         </div>
