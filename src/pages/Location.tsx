@@ -1,8 +1,3 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ArrowRight,
   CalendarDays,
@@ -22,30 +17,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
 import vanAnnecy from "@/assets/van-annecy.jpg";
 import coconNomadeInterieur from "@/assets/cocon-nomade-interieur.jpg";
 import echappeeBelleInterieur from "@/assets/echappee-belle-interieur.jpg";
+
+const yescapaUrl =
+  "https://www.yescapa.fr/campers/113054?date_from=2026-05-15&date_to=2026-05-18&hour_from=14&hour_to=12";
 
 const fleet = [
   {
@@ -53,6 +31,8 @@ const fleet = [
     vehicle: "Fiat Talento aménagé",
     tag: "Escapades en duo ou en famille",
     image: coconNomadeInterieur,
+    wikicampersUrl:
+      "https://www.wikicampers.fr/location/van/chapeiry/fiat-fiat-talento-1-6-ecojet-125-ch-eu6-3-0t/380559",
     alt: "Intérieur du van Cocon Nomade au coucher du soleil — coin repas et cuisine",
     summary:
       "Un van compact, chaleureux et facile à prendre en main pour les week-ends impro, les lacs alpins et les premières virées vanlife.",
@@ -74,6 +54,8 @@ const fleet = [
     vehicle: "Renault Trafic L2H1 — 2019",
     tag: "",
     image: echappeeBelleInterieur,
+    wikicampersUrl:
+      "https://www.wikicampers.fr/location/van/chapeiry/fiat-fiat-talento-1-6-multijet-120-ch-eu6-lh1-1200-3-0t/380688",
     alt: "Intérieur de L'Échappée Belle — meuble cuisine et porte latérale ouverte sur prairie et montagnes",
     summary:
       "Le van signature pour partir léger avec un vrai confort à bord : salon accueillant, lit principal généreux et couchage cabine enfant.",
@@ -99,27 +81,28 @@ const seasons = [
 ] as const;
 
 const included = [
-  "Assurance multirisques et assistance 24h/24",
+  "Assurance et assistance gérées par la plateforme de réservation choisie",
+  "Paiement sécurisé et conditions centralisées avant validation",
+  "Calendrier de disponibilités consultable en ligne",
   "Vaisselle, batterie de cuisine, cafetière et consommables de base",
   "Couette et oreillers fournis pour chaque couchage",
   "Prise en main complète avant départ depuis Chapeiry / Annecy",
   "Éclairage LED, prises USB, rangements et table de repas",
   "Conseils d'itinéraires lacs, montagnes et spots nuit autour des Alpes",
-  "Support propriétaire réactif pendant le séjour",
 ];
 
 const advantages = [
   {
-    title: "Réservation directe valorisée",
-    text: "Jusqu'à -15 % par rapport au tarif affiché sur Yescapa, avec un échange direct et des conseils sur mesure avant le départ.",
+    title: "Assurance simplifiée",
+    text: "La couverture, l'assistance et la franchise sont cadrées directement par Yescapa ou Wikicampers au moment de réserver.",
   },
   {
-    title: "Avantage CE / CSE",
-    text: "Réduction dédiée pour les salariés via leur comité d'entreprise, sur demande. Cumulable uniquement avec la remise réservation directe.",
+    title: "Réservation sécurisée",
+    text: "Les paiements, cautions, disponibilités et conditions d'annulation sont centralisés sur des plateformes reconnues.",
   },
   {
-    title: "Vans pensés par l'artisan qui les loue",
-    text: "Vous partez dans des véhicules que l'on connaît dans le détail : aménagement, entretien, astuces d'usage, tout est maîtrisé.",
+    title: "Vans suivis par l'artisan",
+    text: "Même via plateforme, vous partez avec des véhicules que l'on connaît dans le détail : aménagement, entretien et prise en main.",
   },
 ];
 
@@ -144,7 +127,7 @@ const personas = [
 const faq = [
   {
     q: "Quelle assurance est incluse ?",
-    a: "L'assurance multirisques Yescapa et l'assistance sont incluses. Le niveau de franchise dépend de la formule choisie au moment de la réservation.",
+    a: "L'assurance et l'assistance sont gérées par la plateforme choisie, Yescapa ou Wikicampers. Le niveau de franchise dépend de l'option sélectionnée au moment de la réservation.",
   },
   {
     q: "Les animaux sont-ils acceptés ?",
@@ -156,11 +139,11 @@ const faq = [
   },
   {
     q: "Quelles sont les conditions d'annulation ?",
-    a: "Les conditions d'annulation suivent la politique de réservation appliquée par Yescapa ou le mode de réservation retenu. Elles sont rappelées au moment du devis.",
+    a: "Les conditions d'annulation suivent la politique de réservation appliquée par Yescapa ou Wikicampers. Elles sont rappelées avant validation de la réservation.",
   },
   {
-    q: "Proposez-vous une remise CE / CSE ?",
-    a: "Oui, selon l'organisme. Cette remise est étudiée sur demande et n'est cumulable qu'avec l'offre de réservation directe à -15 %, jamais avec le dégressif longue durée ni l'early booking.",
+    q: "Faut-il passer obligatoirement par une plateforme ?",
+    a: "Oui, les réservations se font désormais via Yescapa ou Wikicampers pour simplifier l'assurance, le paiement sécurisé et les conditions de location.",
   },
 ];
 
@@ -186,66 +169,12 @@ const productJsonLd = fleet.map((van) => ({
   },
 }));
 
-const bookingSchema = z.object({
-  name: z.string().min(2, "Indiquez votre nom."),
-  email: z.string().email("Renseignez un email valide."),
-  phone: z.string().min(6, "Renseignez un téléphone valide."),
-  van: z.string().min(1, "Choisissez un van."),
-  startDate: z.string().min(1, "Choisissez une date de départ."),
-  endDate: z.string().min(1, "Choisissez une date de retour."),
-  travellers: z.string().min(1, "Indiquez le nombre de voyageurs."),
-  cse: z.boolean().default(false),
-  message: z.string().min(12, "Ajoutez quelques détails sur votre séjour."),
-});
-
-type BookingValues = z.infer<typeof bookingSchema>;
-
 const Location = () => {
-  const [sending, setSending] = useState(false);
-
-  const form = useForm<BookingValues>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      van: "",
-      startDate: "",
-      endDate: "",
-      travellers: "",
-      cse: false,
-      message: "",
-    },
-  });
-
-  const onSubmit = async (values: BookingValues) => {
-    setSending(true);
-
-    const subject = `Demande location van — ${values.van}`;
-    const body = [
-      `Nom : ${values.name}`,
-      `Email : ${values.email}`,
-      `Téléphone : ${values.phone}`,
-      `Van souhaité : ${values.van}`,
-      `Dates : du ${values.startDate} au ${values.endDate}`,
-      `Voyageurs : ${values.travellers}`,
-      `CE / CSE : ${values.cse ? "Oui" : "Non"}`,
-      "",
-      "Message :",
-      values.message,
-    ].join("\n");
-
-    window.location.href = `mailto:signature.van@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    toast.success("Votre demande est prête à être envoyée.");
-    form.reset();
-    setSending(false);
-  };
-
   return (
     <>
       <Seo
         title="Location de van à Annecy — tarifs et flotte | Signature Van"
-        description="Découvrez nos vans aménagés au départ d'Annecy : flotte, tarifs, kilomètres inclus, avantage CE/CSE et demande de réservation directe."
+        description="Découvrez nos vans aménagés au départ d'Annecy : flotte, tarifs indicatifs, kilomètres inclus et réservation via Yescapa ou Wikicampers."
         path="/location-van-annecy"
         jsonLd={productJsonLd}
       />
@@ -275,7 +204,7 @@ const Location = () => {
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed text-lg">
               Pas de catalogue interminable : deux vans que l'on connaît parfaitement, avec une lecture simple des tarifs,
-              des kilomètres inclus et une vraie alternative à la réservation plateforme.
+              des kilomètres inclus et une réservation centralisée via Yescapa ou Wikicampers.
             </p>
             <div className="mt-8 grid gap-px bg-border">
               {[
@@ -339,6 +268,12 @@ const Location = () => {
                       </div>
                     ))}
                   </dl>
+
+                  <Button asChild className="mt-8 w-full sm:w-auto">
+                    <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
+                      Réserver sur Wikicampers <ArrowRight />
+                    </a>
+                  </Button>
                 </div>
               </article>
             ))}
@@ -351,7 +286,7 @@ const Location = () => {
           <div className="max-w-3xl mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Tarifs</p>
             <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Une grille simple, pensée pour être <em className="italic">lue en un coup d'œil</em>.
+              Des repères simples, à confirmer <em className="italic">sur les plateformes</em>.
             </h2>
           </div>
 
@@ -362,9 +297,9 @@ const Location = () => {
                   {season.minNights}
                 </span>
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{season.name}</p>
-                <p className="mt-4 font-serif text-5xl leading-none">{season.price}</p>
+                <p className="mt-4 font-serif text-5xl leading-none">dès {season.price}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{season.period}</p>
-                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par nuit</p>
+                <p className="mt-8 text-xs uppercase tracking-[0.2em] text-sage">par nuit · indicatif</p>
               </article>
             ))}
           </div>
@@ -387,19 +322,17 @@ const Location = () => {
               </ul>
             </div>
             <div className="bg-background p-6 md:p-8">
-              <h3 className="font-serif text-2xl">Remises</h3>
+              <h3 className="font-serif text-2xl">Plateformes</h3>
               <ul className="mt-5 space-y-3 text-sm text-foreground/85">
-                <li>-10 % dès 7 jours</li>
-                <li>-15 % dès 14 jours</li>
-                <li>-20 % dès 21 jours</li>
-                <li>Early booking : -5 % à +4 mois</li>
-                <li>Réservation directe : -15 % vs Yescapa</li>
+                <li>Tarifs finaux affichés avant paiement</li>
+                <li>Assurance et assistance selon l'option choisie</li>
+                <li>Conditions et disponibilités mises à jour en ligne</li>
               </ul>
             </div>
           </div>
 
           <p className="mt-6 text-sm text-muted-foreground">
-            💼 Salarié avec un CE / CSE ? Une remise complémentaire est possible — précisez-le lors de votre demande.
+            Les prix restent indicatifs : le montant final, l'assurance et les éventuelles options sont confirmés sur Yescapa ou Wikicampers avant validation.
           </p>
         </div>
       </section>
@@ -464,24 +397,27 @@ const Location = () => {
       <section className="py-20 md:py-28 bg-forest text-cream">
         <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-sage-light mb-4">— Réservation hybride</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-sage-light mb-4">— Plateformes partenaires</p>
             <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Réserver en direct quand c'est possible, garder Yescapa comme <em className="italic">point d'appui</em>.
+              Réservez en ligne, avec assurance et paiement <em className="italic">sécurisés</em>.
             </h2>
             <p className="mt-6 text-cream/75 text-lg leading-relaxed max-w-3xl">
-              Si vos dates sont définies, la réservation directe reste la meilleure option pour bénéficier de l'échange le plus fluide
-              et de l'avantage tarifaire de -15 % par rapport à la plateforme. Yescapa reste disponible comme alternative de réservation.
+              Pour simplifier l'assurance, la caution et les conditions de location, les réservations passent désormais par Yescapa ou Wikicampers. Vous gardez un cadre clair, des disponibilités en ligne et une prise en main soignée au départ.
             </p>
           </div>
           <div className="md:col-span-4 flex flex-col gap-4">
             <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
-              <Link to="/contact">Demander une réservation directe</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
-              <a href="https://www.yescapa.fr/campers/113054?date_from=2026-05-15&date_to=2026-05-18&hour_from=14&hour_to=12" target="_blank" rel="noreferrer">
-                Voir les annonces Yescapa <ArrowRight />
+              <a href={yescapaUrl} target="_blank" rel="noreferrer">
+                Voir sur Yescapa <ArrowRight />
               </a>
             </Button>
+            {fleet.map((van) => (
+              <Button key={van.name} asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
+                <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
+                  {van.name} sur Wikicampers <ArrowRight />
+                </a>
+              </Button>
+            ))}
           </div>
         </div>
       </section>
@@ -489,175 +425,31 @@ const Location = () => {
       <section className="py-20 md:py-28 bg-background">
         <div className="container mx-auto grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
           <div className="lg:col-span-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Demande de réservation</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Comment réserver</p>
             <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Racontez-nous votre <em className="italic">prochain départ</em>.
+              Choisissez votre van, puis finalisez <em className="italic">sur la plateforme</em>.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed text-lg">
-              En quelques infos, on peut vous orienter vers le bon van, vérifier les disponibilités et intégrer votre avantage CE / CSE si besoin.
+              Les disponibilités, options d'assurance, paiement et conditions sont confirmés directement sur Yescapa ou Wikicampers.
             </p>
           </div>
 
-          <div className="lg:col-span-8 border border-border p-6 md:p-8 bg-muted/10">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nom</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Votre nom" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="vous@email.fr" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Téléphone</FormLabel>
-                        <FormControl>
-                          <Input type="tel" placeholder="06 00 00 00 00" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="van"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Van souhaité</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Choisir un van" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Le Cocon Nomade">Le Cocon Nomade</SelectItem>
-                            <SelectItem value="L'Échappée Belle">L'Échappée Belle</SelectItem>
-                            <SelectItem value="Je ne sais pas encore">Je ne sais pas encore</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="startDate"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Date de départ</FormLabel>
-                        <FormControl>
-                          <Input type="date" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="endDate"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Date de retour</FormLabel>
-                        <FormControl>
-                          <Input type="date" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="travellers"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Voyageurs</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ex. 2 adultes + 1 enfant" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Votre message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          rows={6}
-                          placeholder="Dates souples, destination envisagée, âge de l'enfant, besoin CE / CSE, questions sur les équipements..."
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Plus votre demande est précise, plus le retour sera utile.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="cse"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-md border border-border p-4 bg-background">
-                      <FormControl>
-                        <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(Boolean(checked))} />
-                      </FormControl>
-                      <div className="space-y-1">
-                        <FormLabel>Je dispose d'un CE / CSE</FormLabel>
-                        <FormDescription>
-                          Précisez le nom de l'organisme dans votre message pour que l'on regarde la remise possible.
-                        </FormDescription>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-
-                <Button type="submit" size="lg" disabled={sending}>
-                  {sending ? "Préparation…" : "Préparer mon email de réservation"}
+          <div className="lg:col-span-8 grid md:grid-cols-2 gap-px bg-border">
+            {fleet.map((van) => (
+              <article key={van.name} className="bg-muted/10 p-6 md:p-8">
+                <p className="text-xs uppercase tracking-[0.25em] text-sage">Wikicampers</p>
+                <h3 className="mt-3 font-serif text-3xl leading-tight">{van.name}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{van.vehicle}</p>
+                <p className="mt-5 text-sm leading-relaxed text-foreground/85">
+                  Accédez au calendrier, aux tarifs actualisés et aux conditions d'assurance de ce van.
+                </p>
+                <Button asChild className="mt-6 w-full">
+                  <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
+                    Ouvrir l'annonce <ArrowRight />
+                  </a>
                 </Button>
-              </form>
-            </Form>
+              </article>
+            ))}
           </div>
         </div>
       </section>
