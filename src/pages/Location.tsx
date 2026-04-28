@@ -268,11 +268,6 @@ const Location = () => {
                     ))}
                   </dl>
 
-                  <Button asChild className="mt-8 w-full sm:w-auto">
-                    <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
-                      Réserver sur Wikicampers <ArrowRight />
-                    </a>
-                  </Button>
                 </div>
               </article>
             ))}
@@ -394,62 +389,36 @@ const Location = () => {
       </section>
 
       <section className="py-20 md:py-28 bg-forest text-cream">
-        <div className="container mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-          <div className="md:col-span-8">
+        <div className="container mx-auto grid lg:grid-cols-12 gap-10 md:gap-16 items-start">
+          <div className="lg:col-span-4">
             <p className="text-xs uppercase tracking-[0.3em] text-sage-light mb-4">— Plateformes partenaires</p>
             <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Réservez en ligne, avec assurance et paiement <em className="italic">sécurisés</em>.
+              Réservez en ligne, sur la plateforme <em className="italic">de votre choix</em>.
             </h2>
-            <p className="mt-6 text-cream/75 text-lg leading-relaxed max-w-3xl">
-              Pour simplifier l'assurance, la caution et les conditions de location, les réservations passent désormais par Yescapa ou Wikicampers. Vous gardez un cadre clair, des disponibilités en ligne et une prise en main soignée au départ.
+            <p className="mt-6 text-cream/75 text-lg leading-relaxed">
+              Choisissez votre van, puis ouvrez l'annonce sur Yescapa ou Wikicampers pour consulter les disponibilités, tarifs actualisés, assurance et conditions.
             </p>
           </div>
-          <div className="md:col-span-4 grid gap-4 sm:grid-cols-2 md:grid-cols-1">
+          <div className="lg:col-span-8 grid md:grid-cols-2 gap-px bg-cream/20">
             {fleet.map((van) => (
-              <div key={van.name} className="grid gap-3">
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">{van.name}</p>
-                <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
-                  <a href={van.yescapaUrl} target="_blank" rel="noreferrer">
-                    Voir sur Yescapa <ArrowRight />
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
-                  <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
-                    Voir sur Wikicampers <ArrowRight />
-                  </a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
-          <div className="lg:col-span-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary mb-4">— Comment réserver</p>
-            <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
-              Choisissez votre van, puis finalisez <em className="italic">sur la plateforme</em>.
-            </h2>
-            <p className="mt-6 text-muted-foreground leading-relaxed text-lg">
-              Les disponibilités, options d'assurance, paiement et conditions sont confirmés directement sur Yescapa ou Wikicampers.
-            </p>
-          </div>
-
-          <div className="lg:col-span-8 grid md:grid-cols-2 gap-px bg-border">
-            {fleet.map((van) => (
-              <article key={van.name} className="bg-muted/10 p-6 md:p-8">
-                <p className="text-xs uppercase tracking-[0.25em] text-sage">Wikicampers</p>
+              <article key={van.name} className="bg-forest p-6 md:p-8">
+                <p className="text-xs uppercase tracking-[0.2em] text-sage-light">{van.vehicle}</p>
                 <h3 className="mt-3 font-serif text-3xl leading-tight">{van.name}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{van.vehicle}</p>
-                <p className="mt-5 text-sm leading-relaxed text-foreground/85">
-                  Accédez au calendrier, aux tarifs actualisés et aux conditions d'assurance de ce van.
+                <p className="mt-5 text-sm leading-relaxed text-cream/70">
+                  Une seule zone pour comparer les deux plateformes et finaliser la réservation dans un cadre sécurisé.
                 </p>
-                <Button asChild className="mt-6 w-full">
-                  <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
-                    Ouvrir l'annonce <ArrowRight />
-                  </a>
-                </Button>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  <Button asChild size="lg" className="bg-cream text-forest hover:bg-muted">
+                    <a href={van.yescapaUrl} target="_blank" rel="noreferrer">
+                      Voir sur Yescapa <ArrowRight />
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-cream/40 bg-transparent text-cream hover:bg-cream/10 hover:text-cream">
+                    <a href={van.wikicampersUrl} target="_blank" rel="noreferrer">
+                      Voir sur Wikicampers <ArrowRight />
+                    </a>
+                  </Button>
+                </div>
               </article>
             ))}
           </div>
