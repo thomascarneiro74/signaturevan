@@ -36,7 +36,7 @@ const formules = [
   {
     name: "Formule Liberté",
     price: "Sur devis",
-    priceNote: "à partir de 19 900 €",
+    priceNote: "devis personnalisé",
     tagline: "Pour partir loin, longtemps, hors-réseau.",
     description:
       "L'aménagement complet pensé pour l'autonomie : eau, énergie solaire, chauffage, douche. Tout pour vivre en van plusieurs semaines, partout.",
@@ -68,7 +68,7 @@ const Services = () => {
     <>
       <Seo
         title="Aménagement de van à Annecy — Sur mesure & Formules | Signature Van"
-        description="Aménagement de van à Annecy : projets sur mesure, Formule Confort à 11 900 € et Formule Liberté pour l'autonomie. Prestations à la carte : isolation, électricité, menuiserie."
+        description="Aménagement de van à Annecy : projets sur mesure, Formule Confort à 11 900 € et Formule Liberté sur devis pour l'autonomie. Prestations à la carte : isolation, électricité, menuiserie."
         path="/services"
       />
       <PageHeader
