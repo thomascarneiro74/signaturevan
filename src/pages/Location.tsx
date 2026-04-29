@@ -37,7 +37,7 @@ const fleet = [
     specs: [
       "2 adultes + 1 enfant max. 10 ans",
       "Lit principal 140 × 200 + couchage cabine enfant",
-      "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, ballon eau chaude, robinet douchette extensible, réchaud amovible double feux",
+      "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, robinet douchette extensible, réchaud amovible double feux",
       "Hauteur 2,06 m · permis B",
     ],
     meta: [
@@ -49,7 +49,7 @@ const fleet = [
   },
   {
     name: "L'Échappée Belle",
-    vehicle: "Renault Trafic L2H1 — 2019",
+    vehicle: "Fiat Talento L2H1 — 2019",
     tag: "",
     image: echappeeBelleInterieur,
     yescapaUrl: "https://www.yescapa.fr/campers/113298",
