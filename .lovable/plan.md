@@ -1,23 +1,15 @@
-Plan de modification — uniformisation des liens de réservation
+Je vais faire ces corrections sur tout le site :
 
-1. Réduire les boutons répétés
-- Supprimer les boutons Wikicampers présents directement dans chaque fiche van de la section “La flotte”.
-- Garder les fiches véhicules centrées sur la présentation : photos, caractéristiques, équipements et détails.
+1. Location de vans
+- Dans “Le Cocon Nomade”, retirer la mention “ballon eau chaude” de la liste des équipements.
+- Garder le reste de la phrase cohérent : cuisine équipée, glacière, vaisselle, réserve d’eau propre 54 L, robinet douchette extensible, réchaud double feux.
+- Dans “L’Échappée Belle”, remplacer “Renault Trafic L2H1 — 2019” par “Fiat Talento L2H1 — 2019”.
 
-2. Fusionner les zones de réservation
-- Supprimer la section séparée “Comment réserver” qui répète uniquement Wikicampers.
-- Conserver une seule section claire “Plateformes partenaires / Réservez en ligne”.
-- Dans cette section, afficher chaque van avec exactement deux boutons au même endroit :
-  - “Voir sur Yescapa”
-  - “Voir sur Wikicampers”
+2. Vérification globale des textes
+- Rechercher toutes les occurrences de “L’Échappée Belle” et “Renault Trafic” pour éviter une incohérence ailleurs.
+- Ne pas remplacer les mentions Renault Trafic qui concernent la Formule Confort ou les réalisations si elles parlent bien d’un autre véhicule/projet.
+- Ne modifier que les textes liés à la location “L’Échappée Belle”.
 
-3. Rendre la lecture plus équilibrée
-- Présenter les deux plateformes avec la même importance visuelle, pour éviter l’impression que Wikicampers est partout.
-- Ajouter un court texte du type : “Choisissez votre van, puis ouvrez l’annonce sur la plateforme de votre choix.”
-- Garder les liens externes uniquement dans cette zone de réservation, pour une page plus propre.
-
-Détail technique
-- Fichier concerné : `src/pages/Location.tsx`.
-- Les URLs déjà renseignées dans `fleet` restent conservées pour chaque van : `yescapaUrl` et `wikicampersUrl`.
-- Les boutons externes resteront en `target="_blank"` et `rel="noreferrer"`.
-- La structure finale sera : présentation des vans → tarifs indicatifs → inclus/avantages → pour qui → réservation en ligne unique → FAQ.
+3. Contrôle final
+- Relire les occurrences restantes de “ballon eau chaude”, “eau chaude”, “Renault Trafic” et “Fiat Talento” pour vérifier qu’il ne reste pas d’incohérence sur la page location.
+- Laisser les mentions générales “Trafic / Vivaro / Talento” intactes lorsqu’elles décrivent des compatibilités de formules.
