@@ -22,7 +22,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/signaturevan">
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
