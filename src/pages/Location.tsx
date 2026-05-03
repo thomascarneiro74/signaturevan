@@ -38,7 +38,7 @@ const fleet = [
       "2 adultes + 1 enfant max. 10 ans",
       "Lit principal 140 × 200 + couchage cabine enfant",
       "Cuisine équipée, glacière compression, vaisselle complète, réserve eau propre 54 L, robinet douchette extensible, réchaud amovible double feux",
-      "Hauteur 2,06 m · permis B",
+      "Hauteur 2,06 m · caution 2 000 € · permis B",
     ],
     meta: [
       { label: "Transmission", value: "Manuelle" },
