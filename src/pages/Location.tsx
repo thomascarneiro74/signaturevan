@@ -268,6 +268,21 @@ const Location = () => {
                     ))}
                   </dl>
 
+                  <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                    <Button asChild size="lg" className="flex-1">
+                      <a href={van.yescapaUrl} target="_blank" rel="noopener noreferrer">
+                        Réserver sur Yescapa
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="flex-1">
+                      <a href={van.wikicampersUrl} target="_blank" rel="noopener noreferrer">
+                        Réserver sur Wikicampers
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+
                 </div>
               </article>
             ))}
